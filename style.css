@@ -452,7 +452,7 @@ body {
       padding: 30px;
   }
     .tour-grid {
-      grid-template-columns: repeat(1, 1fr);
+      grid-template-columns: repeat(2, 1fr);
   }
   .tour-card h3 {
     font-size: 15px;
@@ -511,6 +511,9 @@ body {
         max-width: 100%;
         border-width: 6px;
       }
+      .hero {
+        height: 300px;
+    }
   }
   
 /* @media (max-width: 1024px) {
