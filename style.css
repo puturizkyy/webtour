@@ -452,7 +452,7 @@ body {
       padding: 30px;
   }
     .tour-grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(1, 1fr);
   }
   .tour-card h3 {
     font-size: 15px;
