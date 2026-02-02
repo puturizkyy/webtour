@@ -418,7 +418,9 @@ body {
   .hero {
     height: 300px;
   }
-
+  .tours {
+    padding: 30px;
+  }
   .tour-grid {
     grid-template-columns: repeat(2, 1fr);
   }
