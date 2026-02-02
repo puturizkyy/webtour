@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sidebar Navbar</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  /* Navbar atas */
+  .navbar {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar h1 {
+    margin: 0;
+    font-size: 20px;
+  }
+
+  .toggle-btn {
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    height: 100%;
+    width: 0; /* default tertutup */
+    position: fixed;
+    top: 0;
+    right: 0; /* muncul dari kanan */
+    background-color: #007BFF;
+    overflow-x: hidden;
+    transition: 0.3s; /* animasi smooth */
+    padding-top: 60px;
+  }
+
+  .sidebar a {
+    display: block;
+    padding: 15px 25px;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    transition: 0.2s;
+  }
+
+  .sidebar a:hover {
+    background-color: #0056b3;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+  <h1>My Website</h1>
+  <span class="toggle-btn" onclick="openSidebar()">☰</span>
+</div>
+
+<!-- Sidebar -->
+<div id="mySidebar" class="sidebar">
+  <span class="close-btn" onclick="closeSidebar()">×</span>
+  <a href="#">Home</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Contact</a>
+</div>
+
+<script>
+  function openSidebar() {
+    document.getElementById("mySidebar").style.width = "250px"; // buka sidebar
+  }
+
+  function closeSidebar() {
+    document.getElementById("mySidebar").style.width = "0"; // tutup sidebar
+  }
+</script>
+
+</body>
+</html>
