@@ -3,135 +3,10 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Explore Bali Tours</title>
-        <link rel="stylesheet" href="style.css">
-        <style>
-            * {
-              margin: 0;
-              padding: 0;
-              box-sizing: border-box;
-              font-family: Arial, sans-serif;
-            }
-            
-            .review-section {
-              background: #9fd3ff;
-              padding: 60px 0;
-            }
-            
-            .review-section h2 {
-              font-size: 34px;
-              margin: 0 40px 30px;
-              color: #0a1f44;
-            }
-            
-            /* WRAPPER */
-            .review-wrapper {
-              position: relative;
-              overflow: hidden;
-            }
-            
-            /* SLIDER */
-            .review-slider {
-              display: flex;
-              gap: 20px;
-              margin: 0 40px;
-              overflow-x: auto;
-              scroll-behavior: smooth;
-              scroll-snap-type: x mandatory;
-              scrollbar-width: none;
-            }
-            .review-slider::-webkit-scrollbar {
-              display: none;
-            }
-            
-            /* CARD */
-            .review-card {
-              flex: 0 0 calc((100% - 60px) / 4);
-              background: #fff;
-              border-radius: 20px;
-              padding: 24px;
-              min-height: 160px;
-              scroll-snap-align: start;
-            }
-            
-            .stars {
-              color: #fbbf24;
-              font-size: 18px;
-              margin-bottom: 10px;
-            }
-            
-            .review-card p {
-              font-size: 16px;
-              color: #1e293b;
-              margin-bottom: 12px;
-            }
-            
-            .review-card strong {
-              color: #0f172a;
-            }
-            
-            /* NAV BUTTON */
-            .nav {
-              position: absolute;
-              top: 50%;
-              transform: translateY(-50%);
-              width: 45px;
-              height: 45px;
-              border-radius: 50%;
-              border: none;
-              font-size: 26px;
-              background: #fff;
-              cursor: pointer;
-              z-index: 5;
-              box-shadow: 0 4px 10px rgba(0,0,0,.2);
-            }
-            
-            .nav.prev { left: 10px; }
-            .nav.next { right: 10px; }
-            
-            /* DOTS */
-            .dots {
-              display: flex;
-              justify-content: center;
-              gap: 10px;
-              margin-top: 25px;
-            }
-            
-            .dots span {
-              width: 10px;
-              height: 10px;
-              border-radius: 50%;
-              background: #cbd5e1;
-              cursor: pointer;
-            }
-            
-            .dots span.active {
-              background: #0a1f44;
-            }
-            
-            /* MOBILE */
-            @media (max-width: 768px) {
-              .review-section h2 {
-                margin: 0 20px 20px;
-                font-size: 26px;
-              }
-            
-              .review-slider {
-                margin: 0 20px;
-              }
-            
-              .review-card {
-                flex: 0 0 calc((100% - 20px) / 2);
-              }
-            
-              .nav {
-                display: none;
-              }
-            }
-            </style>
+        <link rel="stylesheet" href="stylej.css">
+        <title>Document</title>
     </head>
     <body>
-
         <!-- NAVBAR -->
         <header class="navbar">
             <div class="logo">🌼 Explore Bali</div>
@@ -149,7 +24,6 @@
             </nav>
         </header>
 
-        <!-- SIDEBAR -->
         <div id="mySidebar" class="sidebar">
             <a href="#">Home</a>
             <a href="#">Tours</a>
@@ -188,7 +62,6 @@
                 </div>
             </div>
         </section>
-
         <!-- TOURS -->
         <section class="tours">
             <h2>Popular Bali Tours</h2>
@@ -221,6 +94,7 @@
             <button class="btn-view">View All Tours</button>
         </section>
 
+        <!-- tentang kami -->
         <section class="why-choose">
             <div class="container">
                 <h2 class="title">
@@ -235,7 +109,6 @@
                     top-notch safety, and unforgettable thrills. Here’s what
                     sets us apart!
                 </p>
-
                 <div class="card-wrapper">
                     <div class="card">
                         <div class="icon">❤️</div>
@@ -292,7 +165,23 @@
                 </div>
             </div>
         </section>
+        <!-- popup -->
+        <div class="popup" id="popup">
+            <div class="popup-content">
 
+                <div class="popup-header">
+                    <h3 id="popup-title"></h3>
+                    <span class="close" onclick="closePopup()">×</span>
+                </div>
+
+                <div class="popup-body">
+                    <p id="popup-text"></p>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- galery -->
         <section class="home-gallery">
             <div class="gallery-container">
 
@@ -351,60 +240,58 @@
 
         <!-- FLUTER -->
         <section class="review-section">
-            <h2>Loved by thousands of iPhone<br>and Android users alike</h2>
+            <div class="isidah">
+                <h2>Loved by thousands of iPhone<br>and Android users alike</h2>
 
-            <div class="review-wrapper">
-                <button class="nav prev" onclick="slideReview(-1)">‹</button>
+                <div class="review-wrapper">
+                    <button class="nav prev"
+                        onclick="slideReview(-1)">‹</button>
 
-                <div class="review-slider" id="reviewSlider">
-                    <div class="review-card">
-                        <div class="stars">★★★★★</div>
-                        <p>Does exactly what it says. Clear to read and
-                            understand.</p>
-                        <strong>@colinmandy94</strong>
+                    <div class="review-slider" id="reviewSlider">
+                        <div class="review-card">
+                            <div class="stars">★★★★★</div>
+                            <p>Does exactly what it says. Clear to read and
+                                understand.</p>
+                            <strong>@colinmandy94</strong>
+                        </div>
+
+                        <div class="review-card">
+                            <div class="stars">★★★★★</div>
+                            <p>Love the ease and efficiency. Awesome app.</p>
+                            <strong>Jennifer Black</strong>
+                        </div>
+
+                        <div class="review-card">
+                            <div class="stars">★★★★★</div>
+                            <p>This app is good if you need to identify spyware
+                                quickly.</p>
+                            <strong>Philip Colligan</strong>
+                        </div>
+
+                        <div class="review-card">
+                            <div class="stars">★★★★★</div>
+                            <p>Very helpful and easy to recommend to others.</p>
+                            <strong>Leslie</strong>
+                        </div>
+
+                        <div class="review-card">
+                            <div class="stars">★★★★★</div>
+                            <p>Simple, fast and very useful.</p>
+                            <strong>Michael</strong>
+                        </div>
+
+                        <div class="review-card">
+                            <div class="stars">★★★★★</div>
+                            <p>Works perfectly on my phone.</p>
+                            <strong>Anna</strong>
+                        </div>
                     </div>
 
-                    <div class="review-card">
-                        <div class="stars">★★★★★</div>
-                        <p>Love the ease and efficiency. Awesome app.</p>
-                        <strong>Jennifer Black</strong>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="stars">★★★★★</div>
-                        <p>This app is good if you need to identify spyware
-                            quickly.</p>
-                        <strong>Philip Colligan</strong>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="stars">★★★★★</div>
-                        <p>Very helpful and easy to recommend to others.</p>
-                        <strong>Leslie</strong>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="stars">★★★★★</div>
-                        <p>Simple, fast and very useful.</p>
-                        <strong>Michael</strong>
-                    </div>
-
-                    <div class="review-card">
-                        <div class="stars">★★★★★</div>
-                        <p>Works perfectly on my phone.</p>
-                        <strong>Anna</strong>
-                    </div>
+                    <button class="nav next" onclick="slideReview(1)">›</button>
                 </div>
 
-                <button class="nav next" onclick="slideReview(1)">›</button>
+                <div class="dots" id="reviewDots"></div>
             </div>
-
-            <div class="dots" id="reviewDots"></div>
-        </section>
-
-        <!-- WA BUTTON -->
-        <section class="wa">
-            <button><img src="tamplate.jpg" alt="WhatsApp"></button>
         </section>
 
         <!-- OFFER -->
@@ -412,32 +299,42 @@
             <h2>30% Off on All Bali Tours</h2>
             <button>Book Now & Save</button>
         </section>
-        <div class="popup" id="popup">
-            <div class="popup-content">
 
-                <div class="popup-header">
-                    <h3 id="popup-title"></h3>
-                    <span class="close" onclick="closePopup()">×</span>
-                </div>
+        <!-- bar bottom -->
+        <nav class="bottom-bar mobile-only">
+            <a href="#home" class="bar-item active">
+                <span>🏠</span>
+                <small>Home</small>
+            </a>
+            <a href="#gallery" class="bar-item">
+                <span>🖼️</span>
+                <small>Galeri</small>
+            </a>
+            <a href="#booking" class="bar-item">
+                <span>📅</span>
+                <small>Booking</small>
+            </a>
+            <a href="#chat" class="bar-item">
+                <span>💬</span>
+                <small>Chat</small>
+            </a>
+            <a href="#profile" class="bar-item">
+                <span>👤</span>
+                <small>Profil</small>
+            </a>
+        </nav>
 
-                <div class="popup-body">
-                    <p id="popup-text"></p>
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- JS -->
         <script>
-const sidebar = document.getElementById("mySidebar");
-const toggleBtn = document.getElementById("sidebarToggle");
-
-function toggleSidebar() {
-    sidebar.style.width = sidebar.style.width === "150px" ? "0" : "150px";
-    toggleBtn.classList.toggle("active");
-}
-
+            // navbar
+            const sidebar = document.getElementById("mySidebar");
+            const toggleBtn = document.getElementById("sidebarToggle");
+            
+            function toggleSidebar() {
+                sidebar.style.width = sidebar.style.width === "150px" ? "0" : "150px";
+                toggleBtn.classList.toggle("active");
+            }
+            // galeri
+            
 function openPopup(type) {
   const popup = document.getElementById("popup");
   const title = document.getElementById("popup-title");
@@ -467,6 +364,8 @@ document.getElementById("popup").addEventListener("click", function (e) {
   if (e.target === this) closePopup();
 });
 
+
+// riview
 const slider = document.getElementById("reviewSlider");
 const dotsContainer = document.getElementById("reviewDots");
 const cards = document.querySelectorAll(".review-card");
@@ -533,7 +432,7 @@ window.addEventListener("resize", () => {
 });
 
 createDots();
-</script>
+        </script>
 
     </body>
 </html>

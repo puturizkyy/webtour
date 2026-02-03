@@ -1,97 +1,109 @@
 <!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sidebar Navbar</title>
-<style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-  }
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bottom Bar Mobile</title>
 
-  /* Navbar atas */
-  .navbar {
-    background-color: #007BFF;
-    color: white;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+    <style>
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
 
-  .navbar h1 {
-    margin: 0;
-    font-size: 20px;
-  }
+body{
+  min-height:200vh; /* biar keliatan scroll */
+  padding-bottom:80px; /* supaya konten gak ketutup bottom bar */
+}
 
-  .toggle-btn {
-    font-size: 24px;
-    cursor: pointer;
-  }
+/* ================= BOTTOM BAR ================= */
+.bottom-bar{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:70px;
+  background:#ffffff;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  border-top:1px solid #e5e7eb;
+  box-shadow:0 -4px 10px rgba(0,0,0,.1);
+  z-index:9999;
+}
 
-  /* Sidebar */
-  .sidebar {
-    height: 100%;
-    width: 0; /* default tertutup */
-    position: fixed;
-    top: 0;
-    right: 0; /* muncul dari kanan */
-    background-color: #007BFF;
-    overflow-x: hidden;
-    transition: 0.3s; /* animasi smooth */
-    padding-top: 60px;
-  }
+/* ITEM */
+.bar-item{
+  text-decoration:none;
+  color:#64748b;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font-size:12px;
+  transition:.3s;
+}
 
-  .sidebar a {
-    display: block;
-    padding: 15px 25px;
-    text-decoration: none;
-    color: white;
-    font-size: 18px;
-    transition: 0.2s;
-  }
+.bar-item span{
+  font-size:22px;
+  margin-bottom:4px;
+}
 
-  .sidebar a:hover {
-    background-color: #0056b3;
-  }
+/* ACTIVE */
+.bar-item.active{
+  color:#0a1f44;
+}
 
-  .close-btn {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 24px;
-    cursor: pointer;
+/* ================= DESKTOP HILANG ================= */
+@media (min-width: 769px){
+  .bottom-bar{
+    display:none;
   }
-
+}
 </style>
-</head>
-<body>
+  </head>
 
-<!-- Navbar -->
-<div class="navbar">
-  <h1>My Website</h1>
-  <span class="toggle-btn" onclick="openSidebar()">☰</span>
-</div>
+  <body>
 
-<!-- Sidebar -->
-<div id="mySidebar" class="sidebar">
-  <span class="close-btn" onclick="closeSidebar()">×</span>
-  <a href="#">Home</a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Contact</a>
-</div>
+    <h1 style="padding:20px">Contoh Konten Web</h1>
+    <p style="padding:20px">Scroll ke bawah untuk lihat Bottom Bar.</p>
 
-<script>
-  function openSidebar() {
-    document.getElementById("mySidebar").style.width = "250px"; // buka sidebar
-  }
+    <!-- ================= BOTTOM BAR ================= -->
+    <nav class="bottom-bar">
+      <a href="#home" class="bar-item active">
+        <span>🏠</span>
+        <small>Home</small>
+      </a>
+      <a href="#gallery" class="bar-item">
+        <span>🖼️</span>
+        <small>Galeri</small>
+      </a>
+      <a href="#booking" class="bar-item">
+        <span>📅</span>
+        <small>Booking</small>
+      </a>
+      <a href="#chat" class="bar-item">
+        <span>💬</span>
+        <small>Chat</small>
+      </a>
+      <a href="#profile" class="bar-item">
+        <span>👤</span>
+        <small>Profil</small>
+      </a>
+    </nav>
 
-  function closeSidebar() {
-    document.getElementById("mySidebar").style.width = "0"; // tutup sidebar
-  }
+    <script>
+const items = document.querySelectorAll(".bar-item");
+
+items.forEach(item=>{
+  item.addEventListener("click",()=>{
+    items.forEach(i=>i.classList.remove("active"));
+    item.classList.add("active");
+  });
+});
 </script>
 
-</body>
+  </body>
 </html>

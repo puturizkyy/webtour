@@ -1,0 +1,999 @@
+/* ================= GLOBAL ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  body.no-scroll {
+    overflow: hidden;
+  }
+  
+  body {
+    background: #e3f2fd;
+  }
+  
+  /* ================= NAVBAR ================= */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    background: rgba(13, 71, 161, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar .logo {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+  .navbar a {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  /* ================= TOGGLE BUTTON (HAMBURGER → X) ================= */
+  .toggle-btn {
+    width: 30px;
+    height: 22px;
+    position: relative;
+    cursor: pointer;
+    display: none; /* muncul di HP */
+  }
+  
+  .toggle-btn span {
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    background: white;
+    left: 0;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+  }
+  
+  .toggle-btn span:nth-child(1) {
+    top: 0;
+  }
+  
+  .toggle-btn span:nth-child(2) {
+    top: 9px;
+  }
+  
+  .toggle-btn span:nth-child(3) {
+    top: 18px;
+  }
+  
+  .toggle-btn.active span:nth-child(1) {
+    transform: rotate(45deg);
+    top: 9px;
+  }
+  
+  .toggle-btn.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .toggle-btn.active span:nth-child(3) {
+    transform: rotate(-45deg);
+    top: 9px;
+  }
+
+  /* ================= SIDEBAR ================= */
+.sidebar {
+    margin-top: 60px;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: rgba(13, 71, 161, 0.95);
+    overflow-x: hidden;
+    transition: 0.4s;
+    z-index: 2000;
+  }
+  
+  .sidebar a {
+    display: block;
+    padding: 15px 25px;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    transition: 0.2s;
+  }
+  
+  .sidebar a:hover {
+    background-color: #0056b3;
+  }
+  /* hero */
+  .hero {
+    margin-top: 60px;
+    height: 500px;
+    padding-top: 90px;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0.3)
+      ),
+      url("tamplate.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hero-content {
+    text-align: center;
+    color: white;
+  }
+  
+  .hero h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+  }
+  
+  .hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+  
+
+  /* ================= INFO SECTION ================= */
+.info-section {
+    padding: 30px 20px;
+  }
+  
+  .info-container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+  }
+  
+  .info-text h2 {
+    font-size: 36px;
+    color: #0d47a1;
+    margin-bottom: 20px;
+  }
+  
+  .info-text p {
+    font-size: 16px;
+    color: #555;
+    max-width: 500px;
+    margin-bottom: 30px;
+  }
+  
+  .info-buttons {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .btn {
+    padding: 12px 22px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+  
+  .btn.primary {
+    background: #1e88e5;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn.primary:hover {
+    background: #0d47a1;
+    transform: translateY(-2px);
+  }
+  
+  .btn.outline {
+    border: 2px solid #1e88e5;
+    color: #1e88e5;
+  }
+  
+  .btn.outline:hover {
+    background: #1e88e5;
+    color: white;
+    transform: translateY(-2px);
+  }
+  
+  .info-image img {
+    max-width: 100%;
+    border-radius: 12px;
+    border: 8px solid #bbdefb;
+  }
+
+  /* ================= TOURS ================= */
+.tours {
+    padding: 80px;
+    text-align: center;
+    background: #e3f2fd;
+  }
+  
+  .tours h2 {
+    color: #0d47a1;
+  }
+  
+  .tour-grid {
+    max-width: 1500px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+    margin: 40px auto 0 auto; 
+  }
+  
+  .tour-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(13, 71, 161, 0.15);
+  }
+  
+  .tour-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+  }
+  
+  .tour-card h3 {
+    margin: 15px;
+    color: #0d47a1;
+  }
+  
+  .tour-card p {
+    color: #777;
+  }
+  
+  .price {
+    display: inline-block;
+    margin: 15px;
+    background: #1e88e5;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-weight: bold;
+  }
+  
+  .btn-view {
+    margin-top: 40px;
+    padding: 12px 30px;
+    background: #1e88e5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+  }
+  
+  .btn-view:hover {
+    background: #0d47a1;
+  }
+
+
+  
+  .why-choose {
+    padding: 80px 20px;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 36px;
+    font-weight: 800;
+    color: #0b5d3b;
+    margin-bottom: 15px;
+  }
+  
+  .title .arrow {
+    color: #ff7a00;
+    font-weight: 900;
+    margin: 0 10px;
+  }
+  
+  .subtitle {
+    max-width: 750px;
+    margin: 0 auto 60px;
+    color: #777;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  
+  .card-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+  }
+  
+  .card {
+    border: 2px solid #ff7a00;
+    padding: 40px 25px;
+    text-align: left;
+    transition: 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+  
+  .icon {
+    font-size: 40px;
+    color: #ff7a00;
+    margin-bottom: 25px;
+  }
+  
+  .card h3 {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    color: #000;
+  }
+  
+  .card p {
+    color: #777;
+    line-height: 1.6;
+    font-size: 15px;
+  }
+  .review-section {
+    background: #9fd3ff;
+    padding: 60px 0;
+    
+  }
+  .isidah{
+    max-width: 1500px;
+    margin: 0px auto 0 auto; 
+  }
+  .review-section h2 {
+    font-size: 34px;
+    margin: 0 40px 30px;
+    color: #0a1f44;
+  }
+  
+  /* WRAPPER */
+  .review-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* SLIDER */
+  .review-slider {
+    display: flex;
+    gap: 20px;
+    margin: 0 40px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .review-slider::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* CARD */
+  .review-card {
+    flex: 0 0 calc((100% - 60px) / 4);
+    background: #fff;
+    border-radius: 20px;
+    padding: 24px;
+    min-height: 160px;
+    scroll-snap-align: start;
+  }
+  
+  .stars {
+    color: #fbbf24;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .review-card p {
+    font-size: 16px;
+    color: #1e293b;
+    margin-bottom: 12px;
+  }
+  
+  .review-card strong {
+    color: #0f172a;
+  }
+  
+  /* NAV BUTTON */
+  .nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    font-size: 26px;
+    background: #fff;
+    cursor: pointer;
+    z-index: 5;
+    box-shadow: 0 4px 10px rgba(0,0,0,.2);
+  }
+  
+  .nav.prev { left: 10px; }
+  .nav.next { right: 10px; }
+  
+  /* DOTS */
+  .dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 25px;
+  }
+  
+  .dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #cbd5e1;
+    cursor: pointer;
+  }
+  
+  .dots span.active {
+    background: #0a1f44;
+  }
+
+  /* ================= HOME GALLERY ================= */
+.home-gallery {
+    padding: 80px 20px;
+  }
+  
+  .gallery-container {
+    max-width: 1200px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  /* TITLE */
+  .gallery-title {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #0d47a1;
+  }
+  
+  .gallery-subtitle {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 40px;
+  }
+  
+  /* GRID */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+  }
+  
+  /* ITEM */
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    cursor: pointer;
+    background: #000;
+  }
+  
+  /* IMAGE */
+  .gallery-item img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .gallery-item:hover img {
+    transform: scale(1.1);
+  }
+  
+  /* SIMPLE TEXT OVERLAY */
+  .gallery-text {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    z-index: 2;
+  }
+  
+  /* DARK OVERLAY */
+  .gallery-item::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0,0,0,0.65),
+      rgba(0,0,0,0.2),
+      rgba(0,0,0,0)
+    );
+    z-index: 1;
+  }
+  
+  /* ================= TOUR INFO (CARD KHUSUS) ================= */
+  .tour-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    color: #fff;
+    z-index: 3;
+  }
+  
+  /* TITLE */
+  .tour-info h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  
+  /* RATING */
+  .tour-rating {
+    font-size: 18px;
+    color: #ffc107;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .tour-rating span {
+    font-size: 14px;
+    color: #fff;
+    opacity: 0.9;
+  }
+  
+  /* PRICE */
+  .tour-price {
+    margin-top: 8px;
+    font-size: 17px;
+    font-weight: bold;
+    color: #ffd54f;
+  }
+  
+  /* ================= BUTTON ================= */
+  .gallery-btn {
+    display: inline-block;
+    margin-top: 45px;
+    padding: 14px 36px;
+    background: #ff9800;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: 0.3s ease;
+  }
+  
+  .gallery-btn:hover {
+    background: #fb8c00;
+    transform: translateY(-3px);
+  }
+  
+
+  /* ================= FLUTER ================= */
+.fluter {
+    padding: 30px 30px;
+    background: #9bd0fe;
+    color: #0a1a44;
+    overflow: hidden;
+  }
+  
+  .fluter h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+  
+  .fluter-track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 15px;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+  }
+  
+  .fluter-track::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .fluter-track::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+  }
+  
+  .fluter-card {
+    min-width: 280px;
+    max-width: 320px;
+    background: #fff;
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+  
+  .stars {
+    color: #fbc02d;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .author {
+    font-weight: 600;
+    font-size: 13px;
+  }
+  .more-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: 1.5px solid #ff7a00;
+    background: transparent;
+    color: #ff7a00;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .more-btn:hover {
+    background: #ff7a00;
+    color: #fff;
+  }
+  
+  /* POPUP */
+  .popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    z-index: 999;
+  }
+  
+  .popup.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .popup-content {
+    background: #fff;
+    max-width: 450px;
+    max-height: 80vh;
+    border-radius: 12px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 0; /* penting */
+  }
+  
+  /* HEADER TETAP */
+  .popup-header {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    border-bottom: 1px solid #eee;
+  }
+  
+  /* ISI YANG SCROLL */
+  .popup-body {
+    padding: 20px 30px;
+    overflow-y: auto;
+  }
+  
+  /* TOMBOL X */
+  .close {
+    font-size: 26px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  
+  
+  .popup-content h3 {
+    margin-bottom: 15px;
+    font-size: 22px;
+  }
+  
+  .popup-content p {
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  .close {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+  }
+
+/* keterang bawah */
+  /* ================= OFFER ================= */
+  .offer {
+    height: 300px;
+    background: rgba(13, 71, 161, 0.85);
+    color: white;
+    text-align: center;
+    padding-top: 100px;
+  }
+  
+  .offer button {
+    margin-top: 20px;
+    padding: 12px 30px;
+    background: #1e88e5;
+    border: none;
+    color: white;
+    border-radius: 8px;
+  }
+  
+  .offer button:hover {
+    background: #0d47a1;
+  }
+
+ /* nav bottom */
+
+ .bottom-bar {
+    position: fixed; /* penting agar selalu terlihat walau scroll */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: #ffffff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid #e5e7eb;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+    z-index: 9999;
+  }
+
+  /* ITEM */
+  .bar-item {
+    text-decoration: none;
+    color: #64748b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+    transition: 0.3s;
+  }
+
+  .bar-item span {
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+
+  /* ACTIVE */
+  .bar-item.active {
+    color: #0a1f44;
+  }
+
+  /* ================= MOBILE ONLY ================= */
+  .mobile-only {
+    display: none; /* default muncul di mobile */
+  }
+
+
+
+
+
+ /* destop kecil */
+ @media (max-width: 1234px) {
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+        /* gap: 25px; */
+      }
+    .tour-grid{
+            grid-template-columns: repeat(2, 1fr);
+ 
+    }
+ }
+ @media (max-width: 855px) {
+    body{
+        width: 856px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+        /* gap: 25px; */
+      }
+    .tour-grid{
+            grid-template-columns: repeat(2, 1fr);
+ 
+    }
+ }
+
+
+  /* ================= RESPONSIVE HP ================= */
+@media (max-width: 650px) {
+    .toggle-btn {
+      display: block;
+    }
+  
+    nav a {
+      display: none;
+    }
+
+    .info-container {
+        flex-direction: column;
+        gap: 30px;
+        padding: 0 16px;
+      }
+    
+      .info-text h2,
+      .info-text p {
+        text-align: center;
+        font-size: 16px;
+      }
+    
+      .info-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+    
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    
+      .info-image img {
+        max-width: 100%;
+        border-width: 6px;
+      }
+    
+      .hero {
+        height: 300px;
+      }
+      .tours {
+        padding: 30px;
+      }
+      .tour-grid {
+        gap: 25px;
+        grid-template-columns: repeat(2, 1fr);
+      }
+    
+      .tour-card h3 {
+        font-size: 15px;
+        margin: 10px;
+      }
+    
+      .tour-card p {
+        font-size: 12px;
+      }
+    
+      .tour-card img {
+        height: 240px;
+      }
+      /* ================= RESPONSIVE ================= */
+    
+      .why-choose {
+        padding: 60px 15px;
+      }
+    
+      .title {
+        font-size: 24px;
+        line-height: 1.3;
+      }
+    
+      .title .arrow {
+        display: none; /* panah disembunyikan di HP */
+      }
+    
+      .subtitle {
+        font-size: 14px;
+        margin-bottom: 40px;
+      }
+    
+      .card-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+    
+      .card {
+        padding: 30px 20px;
+        text-align: center;
+      }
+    
+      .icon {
+        font-size: 36px;
+        margin-bottom: 20px;
+      }
+    
+      .card h3 {
+        font-size: 20px;
+      }
+    
+      .card p {
+        font-size: 14px;
+      }
+      .popup-content {
+        max-height: 85vh;
+        padding: 20px;
+        text-align: left;       /* lebih enak baca di HP */
+      }
+    
+      .popup-content h3 {
+        font-size: 18px;
+      }
+    
+      .popup-content p {
+        font-size: 14px;
+      }
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 25px;
+      }
+        .gallery-title {
+          font-size: 28px;
+        }
+      
+        .gallery-item img {
+          height: 220px;
+        }
+
+        .review-section h2 {
+            margin: 0 20px 20px;
+            font-size: 26px;
+          }
+        
+          .review-slider {
+            margin: 0 20px;
+          }
+        
+          .review-card {
+            flex: 0 0 calc((100% - 20px) / 2);
+          }
+        
+          .nav {
+            display: none;
+          }
+
+
+    /* nar bottom */
+    .mobile-only {
+        display: flex; /* hilang di desktop */
+      }
+}
+
+/* 
+Device	Breakpoint (max-width)
+HP kecil	480px
+HP besar	650px
+Tablet	1024px
+Laptop kecil	1280px
+Desktop besar	1920px */
