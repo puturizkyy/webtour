@@ -3,107 +3,107 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bottom Bar Mobile</title>
-
-    <style>
-/* RESET */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial, sans-serif;
-}
-
-body{
-  min-height:200vh; /* biar keliatan scroll */
-  padding-bottom:80px; /* supaya konten gak ketutup bottom bar */
-}
-
-/* ================= BOTTOM BAR ================= */
-.bottom-bar{
-  position:fixed;
-  bottom:0;
-  left:0;
-  width:100%;
-  height:70px;
-  background:#ffffff;
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-  border-top:1px solid #e5e7eb;
-  box-shadow:0 -4px 10px rgba(0,0,0,.1);
-  z-index:9999;
-}
-
-/* ITEM */
-.bar-item{
-  text-decoration:none;
-  color:#64748b;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  font-size:12px;
-  transition:.3s;
-}
-
-.bar-item span{
-  font-size:22px;
-  margin-bottom:4px;
-}
-
-/* ACTIVE */
-.bar-item.active{
-  color:#0a1f44;
-}
-
-/* ================= DESKTOP HILANG ================= */
-@media (min-width: 769px){
-  .bottom-bar{
-    display:none;
-  }
-}
-</style>
+    <title>Bali Tours</title>
+    <link rel="stylesheet" href="tourstyle.css">
   </head>
-
   <body>
 
-    <h1 style="padding:20px">Contoh Konten Web</h1>
-    <p style="padding:20px">Scroll ke bawah untuk lihat Bottom Bar.</p>
+    <section class="tours">
 
-    <!-- ================= BOTTOM BAR ================= -->
-    <nav class="bottom-bar">
-      <a href="#home" class="bar-item active">
-        <span>🏠</span>
-        <small>Home</small>
-      </a>
-      <a href="#gallery" class="bar-item">
-        <span>🖼️</span>
-        <small>Galeri</small>
-      </a>
-      <a href="#booking" class="bar-item">
-        <span>📅</span>
-        <small>Booking</small>
-      </a>
-      <a href="#chat" class="bar-item">
-        <span>💬</span>
-        <small>Chat</small>
-      </a>
-      <a href="#profile" class="bar-item">
-        <span>👤</span>
-        <small>Profil</small>
-      </a>
-    </nav>
+      <h2>All Bali Tours</h2>
+
+      <!-- FILTER BUTTON -->
+      <div class="category">
+        <button class="active" data-filter="all">All</button>
+        <button data-filter="full">Full Day</button>
+        <button data-filter="half">Half Day</button>
+        <button data-filter="adventure">Adventure</button>
+      </div>
+
+      <!-- TOUR LIST -->
+      <div class="tour-grid">
+
+        <div class="card full">
+          <img
+            src="https://images.unsplash.com/photo-1502786129293-79981df4e689">
+          <div class="card-body">
+            <h3>Ubud & Rice Terraces</h3>
+            <p>Full Day Tour</p>
+            <span class="price">$99</span>
+            <div class="meta">
+              ⭐⭐⭐⭐⭐
+              <span class="order">134x ordered</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card full adventure">
+          <img src="https://images.unsplash.com/photo-1549880338-65ddcdfd017b">
+          <div class="card-body">
+            <h3>Nusa Penida Adventure</h3>
+            <p>Full Day Tour</p>
+            <span class="price">$149</span>
+          </div>
+        </div>
+
+        <div class="card full">
+          <img
+            src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da">
+          <div class="card-body">
+            <h3>Temple & Cultural Tour</h3>
+            <p>Full Day Tour</p>
+            <span class="price">$189</span>
+          </div>
+        </div>
+
+        <div class="card half">
+          <img
+            src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+          <div class="card-body">
+            <h3>Bali Instagram Tour</h3>
+            <p>Half Day Tour</p>
+            <span class="price">$129</span>
+          </div>
+        </div>
+
+        <div class="card half adventure">
+          <img
+            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e">
+          <div class="card-body">
+            <h3>Snorkeling Blue Lagoon</h3>
+            <p>Half Day Tour</p>
+            <span class="price">$89</span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
 
     <script>
-const items = document.querySelectorAll(".bar-item");
+    const filterButtons =
+      document.querySelectorAll('.category button');
+      const tourCards = document.querySelectorAll('.card');
 
-items.forEach(item=>{
-  item.addEventListener("click",()=>{
-    items.forEach(i=>i.classList.remove("active"));
-    item.classList.add("active");
-  });
-});
-</script>
+      filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
 
+      // aktif button
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      const filter = button.getAttribute('data-filter');
+
+      tourCards.forEach(card => {
+      if (filter === 'all' || card.classList.contains(filter)) {
+      card.style.display = 'block';
+      } else {
+      card.style.display = 'none';
+      }
+      });
+
+      });
+      });
+    </script>
   </body>
 </html>
