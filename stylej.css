@@ -229,12 +229,10 @@
   }
   
   .tour-grid {
-    max-width: 1500px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 25px;
     margin-top: 40px;
-    margin: 40px auto 0 auto; 
   }
   
   .tour-card {
@@ -355,12 +353,8 @@
   .review-section {
     background: #9fd3ff;
     padding: 60px 0;
-    
   }
-  .isidah{
-    max-width: 1500px;
-    margin: 0px auto 0 auto; 
-  }
+  
   .review-section h2 {
     font-size: 34px;
     margin: 0 40px 30px;
@@ -808,36 +802,6 @@
   }
 
 
-
-
-
- /* destop kecil */
- @media (max-width: 1234px) {
-    .gallery-grid {
-        grid-template-columns: repeat(3, 1fr);
-        /* gap: 25px; */
-      }
-    .tour-grid{
-            grid-template-columns: repeat(2, 1fr);
- 
-    }
- }
- @media (max-width: 855px) {
-    body{
-        width: 856px;
-    }
-
-    .gallery-grid {
-        grid-template-columns: repeat(3, 1fr);
-        /* gap: 25px; */
-      }
-    .tour-grid{
-            grid-template-columns: repeat(2, 1fr);
- 
-    }
- }
-
-
   /* ================= RESPONSIVE HP ================= */
 @media (max-width: 650px) {
     .toggle-btn {
@@ -848,140 +812,7 @@
       display: none;
     }
 
-    .info-container {
-        flex-direction: column;
-        gap: 30px;
-        padding: 0 16px;
-      }
     
-      .info-text h2,
-      .info-text p {
-        text-align: center;
-        font-size: 16px;
-      }
-    
-      .info-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-    
-      .btn {
-        width: 100%;
-        justify-content: center;
-      }
-    
-      .info-image img {
-        max-width: 100%;
-        border-width: 6px;
-      }
-    
-      .hero {
-        height: 300px;
-      }
-      .tours {
-        padding: 30px;
-      }
-      .tour-grid {
-        gap: 25px;
-        grid-template-columns: repeat(2, 1fr);
-      }
-    
-      .tour-card h3 {
-        font-size: 15px;
-        margin: 10px;
-      }
-    
-      .tour-card p {
-        font-size: 12px;
-      }
-    
-      .tour-card img {
-        height: 240px;
-      }
-      /* ================= RESPONSIVE ================= */
-    
-      .why-choose {
-        padding: 60px 15px;
-      }
-    
-      .title {
-        font-size: 24px;
-        line-height: 1.3;
-      }
-    
-      .title .arrow {
-        display: none; /* panah disembunyikan di HP */
-      }
-    
-      .subtitle {
-        font-size: 14px;
-        margin-bottom: 40px;
-      }
-    
-      .card-wrapper {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-      }
-    
-      .card {
-        padding: 30px 20px;
-        text-align: center;
-      }
-    
-      .icon {
-        font-size: 36px;
-        margin-bottom: 20px;
-      }
-    
-      .card h3 {
-        font-size: 20px;
-      }
-    
-      .card p {
-        font-size: 14px;
-      }
-      .popup-content {
-        max-height: 85vh;
-        padding: 20px;
-        text-align: left;       /* lebih enak baca di HP */
-      }
-    
-      .popup-content h3 {
-        font-size: 18px;
-      }
-    
-      .popup-content p {
-        font-size: 14px;
-      }
-      .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 25px;
-      }
-        .gallery-title {
-          font-size: 28px;
-        }
-      
-        .gallery-item img {
-          height: 220px;
-        }
-
-        .review-section h2 {
-            margin: 0 20px 20px;
-            font-size: 26px;
-          }
-        
-          .review-slider {
-            margin: 0 20px;
-          }
-        
-          .review-card {
-            flex: 0 0 calc((100% - 20px) / 2);
-          }
-        
-          .nav {
-            display: none;
-          }
 
 
     /* nar bottom */
@@ -989,11 +820,3 @@
         display: flex; /* hilang di desktop */
       }
 }
-
-/* 
-Device	Breakpoint (max-width)
-HP kecil	480px
-HP besar	650px
-Tablet	1024px
-Laptop kecil	1280px
-Desktop besar	1920px */

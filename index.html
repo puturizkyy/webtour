@@ -428,6 +428,29 @@
 
         </div>
 
+        <!-- ================= BOTTOM BAR ================= -->
+        <nav class="bottom-bar">
+            <a href="#home" class="bar-item active">
+                <span></span>
+                <small></small>
+            </a>
+            <a href="#gallery" class="bar-item">
+                <span>🖼️</span>
+                <small>Galeri</small>
+            </a>
+            <a href="#booking" class="bar-item">
+                <span>📅</span>
+                <small>Booking</small>
+            </a>
+            <a href="#chat" class="bar-item">
+                <span>💬</span>
+                <small>Chat</small>
+            </a>
+            <a href="#profile" class="bar-item">
+                <span>👤</span>
+                <small>Profil</small>
+            </a>
+        </nav>
         <!-- JS -->
         <script>
 const sidebar = document.getElementById("mySidebar");
@@ -533,6 +556,16 @@ window.addEventListener("resize", () => {
 });
 
 createDots();
+
+// navbotom
+const items = document.querySelectorAll(".bar-item");
+
+items.forEach(item=>{
+  item.addEventListener("click",()=>{
+    items.forEach(i=>i.classList.remove("active"));
+    item.classList.add("active");
+  });
+});
 </script>
 
     </body>
