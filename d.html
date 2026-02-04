@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="id">
-    <head>
-        <meta charset="UTF-8">
-        <title>Nusa Penida Adventure</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8">
+    <title>Nusa Penida Adventure</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <style>
+    <style>
     * {
       box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', Roboto, sans-serif;
     }
 
     body {
@@ -20,9 +20,9 @@
     /* ================= HERO ================= */
     .hero {
       height: 60vh;
-      background:
+      background: 
         linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)),
-        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e')
+        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') 
         center / cover;
       display: flex;
       align-items: center;
@@ -35,13 +35,14 @@
       margin-bottom: 10px;
     }
 
-    .price {
+    .price-tag {
       font-size: 26px;
       background: #f4c430;
       padding: 8px 16px;
       border-radius: 6px;
       color: #000;
       display: inline-block;
+      margin-top: 10px;
     }
 
     /* ================= LAYOUT ================= */
@@ -50,18 +51,20 @@
       grid-template-columns: 2fr 1fr;
       gap: 30px;
       padding: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .content {
       background: #fff;
       padding: 30px;
       border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     }
 
     /* ================= ARTICLE ================= */
     .history-article {
-      max-width: 900px;
-      margin: 60px auto;
+      margin: 40px 0;
       clear: both;
     }
 
@@ -69,26 +72,26 @@
       font-size: 22px;
       font-weight: 700;
       margin-bottom: 16px;
-      border-bottom: 2px solid #222;
+      border-bottom: 3px solid #e63946;
       display: inline-block;
       padding-bottom: 4px;
     }
 
     .history-body img {
       width: 280px;
-      border-radius: 8px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
-    /* ===== GAMBAR KANAN ===== */
+    /* ===== DESKTOP FLOAT ===== */
     .history-article.right img {
       float: right;
-      margin: 12px 0 0px 24px;
+      margin: 0 0 15px 24px;
     }
 
-    /* ===== GAMBAR KIRI ===== */
     .history-article.left img {
       float: left;
-      margin: 12px 24px 0px 0;
+      margin: 0 24px 15px 0;
     }
 
     .history-article p {
@@ -104,7 +107,7 @@
       clear: both;
     }
 
-    /* ================= BOOKING ================= */
+    /* ================= BOOKING CARD ================= */
     .booking {
       background: #fff;
       padding: 25px;
@@ -112,175 +115,188 @@
       position: sticky;
       top: 20px;
       height: fit-content;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     }
 
+    .booking h3 { margin-top: 0; color: #e63946; font-size: 24px; }
+
     .booking ul {
-      padding-left: 18px;
+      padding-left: 0;
+      list-style: none;
+      margin: 20px 0;
+    }
+
+    .booking ul li {
+      margin-bottom: 10px;
+      color: #555;
+      font-size: 14px;
     }
 
     .booking input,
     .booking select {
       width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
     }
 
     .book-btn {
       width: 100%;
-      padding: 12px;
+      padding: 15px;
       background: #e63946;
       color: #fff;
       border: none;
       font-size: 16px;
+      font-weight: 700;
       border-radius: 8px;
       cursor: pointer;
+      transition: 0.3s;
     }
 
-    /* ================= MOBILE ================= */
-    @media (max-width: 768px) {
+    .book-btn:hover { background: #c32f3a; }
 
+    /* ================= MOBILE (HP) ================= */
+    @media (max-width: 850px) {
       .container {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column; /* Booking pindah ke bawah content */
         padding: 20px;
       }
 
-      .hero h1 {
-        font-size: 28px;
+      /* Agar Booking Card muncul setelah Hero, sebelum artikel (Opsional) */
+      .booking {
+        order: -1; /* Pindah ke paling atas di dalam container flex */
+        position: static;
+        margin-bottom: 30px;
       }
 
-      .history-body img {
-        width: 180px;
-      }
+      .hero { height: 40vh; padding: 20px; }
+      .hero h1 { font-size: 26px; }
 
-      /* KANAN TETAP KANAN */
-      .history-article.right img {
-        float: right;
-        margin: 8px 0 0px 16px;
-      }
-
-      /* KIRI TETAP KIRI */
+      /* MATIKAN FLOAT & GAMBAR DI ATAS */
+      .history-article.right img,
       .history-article.left img {
-        float: left;
-        margin: 8px 16px 0px 0;
+        float: none;      /* Matikan melayang */
+        display: block;
+        width: 100%;      /*Gambar full lebar HP */
+        margin: 0 0 20px 0; /* Jarak bawah ke teks */
+        height: auto;
+      }
+
+      .history-article p {
+        font-size: 14px; /* Lebih nyaman dibaca di HP */
+        text-align: left;
+      }
+
+      .history-title {
+        display: block;
+        text-align: center;
       }
     }
   </style>
-    </head>
+  </head>
 
-    <body>
+  <body>
 
-        <!-- HERO -->
-        <section class="hero">
-            <div>
-                <h1>Nusa Penida Adventure</h1>
-                ⭐⭐⭐⭐⭐ 4.8 (210 Reviews) • <b>1.245x dipesan</b><br>
-                <div class="price">$149 / person</div>
-            </div>
+    <section class="hero">
+      <div>
+        <h1>Nusa Penida Adventure</h1>
+        <span>⭐⭐⭐⭐⭐ 4.8 (210 Reviews) • <b>1.245x dipesan</b></span><br>
+        <div class="price-tag">$149 / person</div>
+      </div>
+    </section>
+
+    <div class="container">
+
+      <div class="content">
+        <h2>Tour Overview</h2>
+        <p>
+          Nikmati keindahan alam <b>Nusa Penida</b> dalam satu hari penuh
+          bersama guide lokal berpengalaman. Jelajahi pantai ikonik dan tebing
+          yang menakjubkan.
+        </p>
+
+        <section class="history-article right">
+          <h3 class="history-title">History of the Place</h3>
+          <div class="history-body">
+            <img
+              src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff"
+              alt="View 1">
+            <p>
+              Nusa Penida memiliki sejarah panjang yang sangat unik dalam
+              konstelasi budaya Bali. Dahulu, pulau ini dikenal sebagai tempat
+              pembuangan bagi mereka yang dianggap memiliki ilmu spiritual
+              tinggi namun berbahaya. Namun seiring berjalannya waktu, aura
+              mistis tersebut bertransformasi menjadi daya tarik wisata yang
+              memukau dunia.
+            </p>
+            <p>
+              Keindahan tebing-tebing curam dan pantai pasir putihnya mulai
+              terekspos luas di era digital, menjadikannya salah satu destinasi
+              wajib bagi para petualang yang mencari ketenangan sekaligus
+              tantangan adrenalin.
+            </p>
+          </div>
         </section>
 
-        <!-- MAIN -->
-        <div class="container">
+        <section class="history-article left">
+          <h3 class="history-title">Cultural Heritage</h3>
+          <div class="history-body">
+            <img
+              src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+              alt="View 2">
+            <p>
+              Warisan budaya di Nusa Penida tetap terjaga sangat murni.
+              Masyarakat setempat masih memegang teguh tradisi leluhur dalam
+              menjaga keharmonisan alam. Setiap pantai dan tebing seringkali
+              memiliki pura atau tempat suci yang dihormati, menunjukkan betapa
+              sakralnya bentang alam di pulau ini.
+            </p>
+            <p>
+              Perpaduan antara ritual keagamaan yang autentik dan lanskap alam
+              yang dramatis menciptakan pengalaman yang tidak akan ditemukan di
+              tempat lain. Berkunjung ke sini bukan sekadar berfoto, tapi
+              merasakan denyut nadi kehidupan Bali yang sesungguhnya.
+            </p>
+          </div>
+        </section>
+      </div>
 
-            <!-- LEFT CONTENT -->
-            <div class="content">
+      <aside class="booking">
+        <h3>$149 / person</h3>
+        <ul>
+          <li>✅ Full Day Private Tour</li>
+          <li>✅ Hotel Pickup & Drop-off</li>
+          <li>✅ Fast Boat Ticket (PP)</li>
+          <li>✅ Lunch & Mineral Water</li>
+          <li>✅ Free Cancellation (24h)</li>
+        </ul>
 
-                <h2>Tour Overview</h2>
-                <p>
-                    Nikmati keindahan alam <b>Nusa Penida</b> dalam satu hari
-                    penuh bersama
-                    guide lokal berpengalaman.
-                </p>
+        <label style="font-size: 12px; color: #666;">Pilih Tanggal:</label>
+        <input type="date" value="2026-02-12">
 
-                <!-- ===== ARTICLE KANAN ===== -->
-                <section class="history-article right">
-                    <h3 class="history-title">History of the Place</h3>
-                    <div class="history-body">
-                        <img
-                            src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff">
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Dolore qui illum temporibus recusandae tempore
-                            cumque eligendi quasi cum deleniti dolorem placeat
-                            perferendis laboriosam labore magnam iure, repellat
-                            blanditiis ut minus!
-                            Nobis voluptas facilis esse sed nisi minima itaque
-                            magnam dolorem rem, consequuntur debitis natus
-                            necessitatibus quaerat quam laborum tenetur. Veniam,
-                            dicta esse atque libero impedit reprehenderit.
-                            Quasi, cumque? Natus, omnis?
-                            Mollitia necessitatibus dignissimos, officiis
-                            impedit illum non eum, animi esse corrupti similique
-                            veniam aut quas aspernatur laudantium, dolor
-                            temporibus facere sit voluptate est at ea enim. Ab,
-                            esse. Eos, aliquam?
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Iste eveniet
-                            consequatur autem obcaecati voluptate dolorem eos
-                            qui velit incidunt.
-                        </p>
-                        <p>
-                            The city quickly developed into an important
-                            cultural and political
-                            center with distinctive architecture.
-                        </p>
-                    </div>
-                </section>
+        <label style="font-size: 12px; color: #666;">Jumlah Orang:</label>
+        <select>
+          <option>1 Adult</option>
+          <option selected>2 Adults</option>
+          <option>3 Adults</option>
+          <option>4+ Adults</option>
+        </select>
 
-                <!-- ===== ARTICLE KIRI ===== -->
-                <section class="history-article left">
-                    <h3 class="history-title">Cultural Heritage</h3>
-                    <div class="history-body">
-                        <img
-                            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit. Quam tempore soluta quae officiis vitae,
-                            corporis nihil eaque doloremque cum ea pariatur illo
-                            qui saepe nam laborum tempora. Culpa, tenetur saepe!
-                            Eos repellendus quidem cum suscipit, quam velit
-                            placeat repellat magni porro aperiam quibusdam sed
-                            quasi! Aperiam debitis nihil consectetur ipsa
-                            tempore repellat quis magnam numquam quae,
-                            doloremque ullam reiciendis corporis?
-                            Aspernatur accusantium libero nobis non! Quisquam
-                            distinctio ex veritatis repudiandae, corporis
-                            numquam magnam saepe porro, officiis nulla
-                            temporibus laudantium pariatur modi. Accusamus
-                            dolores perferendis esse tenetur sequi ullam omnis
-                            beatae?
-                            Over the centuries, the region continued to grow and
-                            today stands as
-                            a world heritage destination.
-                        </p>
-                        <p>
-                            Traditions, culture, and natural beauty blend into a
-                            unique
-                            experience.
-                        </p>
-                    </div>
-                </section>
+        <button class="book-btn">Book Now 🔒</button>
+        <p
+          style="font-size: 11px; color: #999; text-align: center; margin-top: 10px;">
+          No hidden fees • Instant Confirmation
+        </p>
+      </aside>
 
-            </div>
+    </div>
 
-            <!-- RIGHT BOOKING -->
-            <div class="booking">
-                <h3>$149 / person</h3>
-                <ul>
-                    <li>✔ Full Day Tour</li>
-                    <li>✔ Hotel Pickup</li>
-                    <li>✔ Free Cancellation</li>
-                </ul>
+    <footer
+      style="text-align: center; padding: 40px; color: #999; font-size: 14px;">
+      &copy; 2026 Nusa Penida Adventure. All Rights Reserved.
+    </footer>
 
-                <input type="date">
-                <select>
-                    <option>1 Adult</option>
-                    <option>2 Adults</option>
-                </select>
-
-                <button class="book-btn">Book Now</button>
-            </div>
-
-        </div>
-
-    </body>
+  </body>
 </html>
