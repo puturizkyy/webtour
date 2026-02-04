@@ -7,10 +7,34 @@
     <link rel="stylesheet" href="tourstyle.css">
   </head>
   <body>
+    <!-- NAVBAR -->
+    <header class="navbar">
+      <div class="logo">🌼 Explore Bali</div>
+      <nav>
+        <a href="#">Home</a>
+        <a href="tour.html">Tours</a>
+        <a href="#">FAQ</a>
+        <a href="#">Contact</a>
+        <span id="sidebarToggle" class="toggle-btn"
+          onclick="toggleSidebar()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </nav>
+    </header>
+
+    <!-- SIDEBAR -->
+    <div id="mySidebar" class="sidebar">
+      <a href="#">Home</a>
+      <a href="#">Tours</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
 
     <section class="tours">
 
-      <h2>All Bali Tours</h2>
+      <h2>Bali Tour Packages</h2>
 
       <!-- FILTER BUTTON -->
       <div class="category">
@@ -23,13 +47,12 @@
       <!-- TOUR LIST -->
       <div class="tour-grid">
 
-        <div class="card full">
+        <div class="card full" data-id="1">
           <img
             src="https://images.unsplash.com/photo-1502786129293-79981df4e689">
           <div class="card-body">
             <h3>Ubud & Rice Terraces</h3>
             <p>Full Day Tour</p>
-            <span class="price">$99</span>
             <div class="meta">
               ⭐⭐⭐⭐⭐
               <span class="order">134x ordered</span>
@@ -37,12 +60,11 @@
           </div>
         </div>
 
-        <div class="card full adventure">
+        <div class="card full adventure" data-id="2">
           <img src="https://images.unsplash.com/photo-1549880338-65ddcdfd017b">
           <div class="card-body">
             <h3>Nusa Penida Adventure</h3>
             <p>Full Day Tour</p>
-            <span class="price">$149</span>
           </div>
         </div>
 
@@ -52,7 +74,6 @@
           <div class="card-body">
             <h3>Temple & Cultural Tour</h3>
             <p>Full Day Tour</p>
-            <span class="price">$189</span>
           </div>
         </div>
 
@@ -81,6 +102,16 @@
     </section>
 
     <script>
+      const sidebar = document.getElementById("mySidebar");
+const toggleBtn = document.getElementById("sidebarToggle");
+
+function toggleSidebar() {
+    sidebar.style.width = sidebar.style.width === "150px" ? "0" : "150px";
+    toggleBtn.classList.toggle("active");
+}
+
+
+
     const filterButtons =
       document.querySelectorAll('.category button');
       const tourCards = document.querySelectorAll('.card');
@@ -104,6 +135,17 @@
 
       });
       });
+
+
+      tourCards.forEach(card => {
+  card.addEventListener('click', () => {
+    const id = card.getAttribute('data-id'); // ambil ID
+    // redirect ke halaman lain sambil kirim ID lewat query string
+    window.location.href = `d.html?id=${id}`;
+  });
+});
+
+
     </script>
   </body>
 </html>
