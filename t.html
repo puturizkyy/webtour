@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Nusa Penida Adventure - Booking</title>
+        <style>
+        :root {
+            --primary-blue: #1e56a0;
+            --btn-blue: #1d5ed2;
+            --text-main: #4a5568;
+            --text-faded: #94a3b8;
+            --bg-body: #f4f7f9;
+            --accent-red: #e63946;
+            --dark-blue: #2c3e50;
+            --border-gray: #e2e8f0;
+        }
+
+        * { box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+        body { margin: 0; background-color: var(--bg-body); color: #333; line-height: 1.5; }
+
+        /* ================= HERO ================= */
+        .hero {
+            height: 35vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') center / cover;
+            display: flex; align-items: center; padding: 0 40px; color: #fff;
+        }
+        .hero h1 { font-size: 3rem; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+
+        /* ================= LAYOUT 4:1 ================= */
+        .container {
+            display: grid;
+            grid-template-columns: 4fr 1.2fr; 
+            gap: 25px;
+            padding: 25px 40px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .content {
+            background: #fff; padding: 35px; border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* ARTIKEL */
+        .article-section h2 { color: var(--dark-blue); border-left: 5px solid var(--btn-blue); padding-left: 15px; margin-bottom: 20px; }
+        .history-article { margin: 30px 0; overflow: hidden; }
+        .history-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; color: var(--primary-blue); }
+        .history-body img { width: 350px; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        .history-article.right img { float: right; margin: 0 0 15px 25px; }
+        .history-article.left img { float: left; margin: 0 25px 15px 0; }
+        .history-article p { font-size: 1rem; text-align: justify; color: #555; }
+
+        /* ================= SIDEBAR ================= */
+        .booking-sidebar {
+            position: sticky;
+            top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            height: fit-content;
+        }
+
+        .card {
+            background: white; padding: 15px; border-radius: 14px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .card-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+
+        .pax-row { display: flex; justify-content: space-between; align-items: center; background: #f8fafc; padding: 8px; border-radius: 10px; }
+        .circle-btn {
+            width: 26px; height: 26px; border: 1.5px solid var(--btn-blue); border-radius: 50%;
+            background: white; color: var(--btn-blue); font-weight: bold; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        /* CALENDAR */
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; margin-top: 5px; }
+        .day-cell { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; cursor: pointer; border-radius: 50%; font-size: 0.75rem; }
+        .day-cell.selected { background: var(--btn-blue) !important; color: white; font-weight: 700; }
+
+        /* OPTIONS */
+        #optionsView { display: none; }
+        .time-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 8px 0; }
+        .time-btn { border: 1px solid var(--border-gray); border-radius: 6px; padding: 5px; cursor: pointer; font-size: 0.7rem; font-weight: 600; background: white; }
+        .time-btn.active { background: var(--btn-blue); color: white; }
+
+        .option-card { border: 1px solid var(--border-gray); border-radius: 8px; padding: 10px; margin-bottom: 6px; cursor: pointer; transition: 0.2s; }
+        .option-card.selected { border: 2px solid var(--btn-blue); background: #f0f7ff; }
+        
+        .details { font-size: 0.7rem; color: #64748b; margin-top: 5px; display: none; border-top: 1px solid #e2e8f0; padding-top: 5px; }
+        .option-card.selected .details { display: block; }
+
+        /* ================= TICKET (110px) ================= */
+        .ticket-container {
+            position: relative;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+        }
+
+        .ticket {
+            background: #fff; 
+            display: flex; 
+            border-radius: 16px; 
+            height: 110px; 
+            position: relative; 
+            overflow: hidden; 
+            border: 1px solid #e2e8f0;
+        }
+
+        .ticket::before, .ticket::after {
+            content: ''; position: absolute; left: 65%; width: 22px; height: 22px; background: var(--bg-body); border-radius: 50%; z-index: 2; border: 1px solid #e2e8f0;
+        }
+        .ticket::before { top: -11px; }
+        .ticket::after { bottom: -11px; }
+
+        .ticket-left { flex: 1.8; padding: 10px 15px; display: flex; flex-direction: column; justify-content: center; }
+        .ticket-divider { width: 1px; border-left: 2px dashed #e2e8f0; position: relative; margin: 10px 0; left: -1px; }
+        .tear-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(90deg); font-size: 7px; color: #cbd5e1; white-space: nowrap; letter-spacing: 1px; background: white; padding: 4px 0; }
+        .ticket-right { flex: 1; padding: 10px 15px; display: flex; flex-direction: column; text-align: right; background: #fff; justify-content: center; }
+
+        .ticket-title { font-size: 0.85rem; font-weight: 800; color: #1d5ed2; line-height: 1.2; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .ticket-pax { font-size: 0.7rem; color: #4a5568; font-weight: 600; }
+        .ticket-time { font-size: 1.3rem; font-weight: 700; color: #1d5ed2; line-height: 1; margin-bottom: 2px; }
+        .ticket-date { font-size: 0.7rem; color: #1d5ed2; font-weight: 500; }
+        .ticket-total-label { font-size: 0.65rem; color: #94a3b8; margin-top: 5px; }
+        .ticket-total-val { font-size: 1.1rem; font-weight: 800; color: #000; line-height: 1; }
+
+        .checkout-btn {
+            width: 100%; background: var(--btn-blue); color: white; border: none;
+            padding: 14px; border-radius: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer;
+            box-shadow: 0 4px 10px rgba(29, 94, 210, 0.2);
+        }
+
+        /* ================= RESPONSIVE (HP MODE) ================= */
+        @media (max-width: 1100px) {
+            .container { grid-template-columns: 1fr; padding: 15px; }
+            .booking-sidebar { position: static; }
+            .hero h1 { font-size: 2rem; }
+            
+            /* Gambar di atas artikel */
+            .history-article.right img, .history-article.left img { 
+                float: none; 
+                width: 100%; 
+                margin: 0 0 15px 0; 
+            }
+            .history-body {
+                display: flex;
+                flex-direction: column;
+            }
+            .content { padding: 20px; }
+        }
+    </style>
+    </head>
+    <body>
+
+        <section class="hero">
+            <div>
+                <h1>Nusa Penida Adventure</h1>
+                <span style="font-size: 1.1rem;">⭐⭐⭐⭐⭐ 4.8 (210 Reviews)</span>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="content">
+                <section class="article-section">
+                    <h2>Jelajahi Surga Tersembunyi</h2>
+                    <p>Nusa Penida menawarkan pemandangan tebing kapur yang
+                        menjulang tinggi dan air laut berwarna biru safir yang
+                        tak terlupakan.</p>
+
+                    <div class="history-article right">
+                        <h3 class="history-title">Kelingking Beach</h3>
+                        <div class="history-body">
+                            <img
+                                src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff"
+                                alt="Kelingking">
+                            <p>Ikon paling terkenal dari Nusa Penida yang
+                                menyerupai kepala dinosaurus T-Rex.</p>
+                        </div>
+                    </div>
+
+                    <div class="history-article left">
+                        <h3 class="history-title">Broken Beach</h3>
+                        <div class="history-body">
+                            <img
+                                src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+                                alt="Broken Beach">
+                            <p>Struktur geologi unik berupa lubang raksasa di
+                                tengah tebing yang mempesona.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <aside class="booking-sidebar">
+                <div class="card">
+                    <div class="card-title">👥 Jumlah Peserta</div>
+                    <div class="pax-row">
+                        <span
+                            style="font-weight: 600; font-size: 0.85rem;">Adult
+                            (10-80 thn)</span>
+                        <div
+                            style="display: flex; align-items: center; gap: 10px;">
+                            <button class="circle-btn"
+                                onclick="updatePax(-1)">−</button>
+                            <span id="paxDisplay"
+                                style="font-weight:700; width: 20px; text-align: center;">1</span>
+                            <button class="circle-btn"
+                                onclick="updatePax(1)">+</button>
+                        </div>
+                    </div>
+
+                    <hr
+                        style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+
+                    <div id="calendarView">
+                        <div class="card-title">📅 Pilih Tanggal</div>
+                        <div
+                            style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 5px;">
+                            <button onclick="moveMonth(-1)"
+                                style="border:none; background:none; cursor:pointer">❮</button>
+                            <b id="monthLabel" style="font-size:0.8rem">Maret
+                                2026</b>
+                            <button onclick="moveMonth(1)"
+                                style="border:none; background:none; cursor:pointer">❯</button>
+                        </div>
+                        <div class="calendar-grid" id="calendarGrid"></div>
+                    </div>
+
+                    <div id="selectionHeader"
+                        style="display:none; margin-top: 10px;">
+                        <div
+                            style="color: var(--btn-blue); cursor: pointer; font-weight: 700; font-size: 0.85rem;"
+                            onclick="resetCalendar()">
+                            ❮ <span id="pickedDateLabel">19 Maret 2026</span>
+                        </div>
+                    </div>
+
+                    <div id="optionsView">
+                        <div class="card-title"
+                            style="font-size: 0.8rem; margin-top: 15px;">🕒
+                            Waktu</div>
+                        <div class="time-grid">
+                            <button class="time-btn active"
+                                onclick="selectTime(this, '08:00')">08:00</button>
+                            <button class="time-btn"
+                                onclick="selectTime(this, '10:00')">10:00</button>
+                            <button class="time-btn"
+                                onclick="selectTime(this, '12:00')">12:00</button>
+                        </div>
+
+                        <div class="card-title" style="font-size: 0.8rem;">📦
+                            Paket Pilihan</div>
+                        <div class="option-card selected"
+                            onclick="selectOpt(this, 'Bali Quad Bike Pass All-Inclusive', 91)">
+                            <div
+                                style="display:flex; justify-content:space-between; font-weight:700;">
+                                <span style="font-size: 0.75rem;">All-Inclusive
+                                    Pass</span><span>$91</span>
+                            </div>
+                            <div class="details">Termasuk: Transport Private PP,
+                                Makan Siang, & Dokumentasi Lengkap.</div>
+                        </div>
+
+                        <div class="option-card"
+                            onclick="selectOpt(this, 'Bali Quad Bike - Standard', 75)">
+                            <div
+                                style="display:flex; justify-content:space-between; font-weight:700;">
+                                <span style="font-size: 0.75rem;">Standard
+                                    Pass</span><span>$75</span>
+                            </div>
+                            <div class="details">Termasuk: Helm, Sepatu Boots, &
+                                Pemandu Profesional.</div>
+                        </div>
+
+                        <div class="option-card"
+                            onclick="selectOpt(this, 'ATV Tandem Adventure (2 Pax)', 140)">
+                            <div
+                                style="display:flex; justify-content:space-between; font-weight:700;">
+                                <span style="font-size: 0.75rem;">Tandem
+                                    Adventure</span><span>$140</span>
+                            </div>
+                            <div class="details">Satu motor untuk 2 orang.
+                                Termasuk Makan Siang & Loker.</div>
+                        </div>
+
+                        <div class="option-card"
+                            onclick="selectOpt(this, 'Sunset ATV Tour + Dinner', 115)">
+                            <div
+                                style="display:flex; justify-content:space-between; font-weight:700;">
+                                <span style="font-size: 0.75rem;">Sunset +
+                                    Dinner</span><span>$115</span>
+                            </div>
+                            <div class="details">Tour sore hari dengan penutup
+                                makan malam romantis di pinggir pantai.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ticket-container">
+                    <div class="ticket">
+                        <div class="ticket-left">
+                            <div class="ticket-title" id="resTitle">Bali Quad
+                                Bike Pass All-Inclusive</div>
+                            <div class="ticket-pax">Adult: <span
+                                    id="resPaxInfo">1 x $91.00</span></div>
+                        </div>
+                        <div class="ticket-divider"><span class="tear-text">TEAR
+                                HERE</span></div>
+                        <div class="ticket-right">
+                            <div class="ticket-time" id="resTime">08:00</div>
+                            <div class="ticket-date" id="resDate">Thu, 19 Mar
+                                26</div>
+                            <div class="ticket-total-label">Total:</div>
+                            <div class="ticket-total-val"
+                                id="resTotal">$91.00</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="checkout-btn">Checkout Sekarang 🔒</button>
+            </aside>
+        </div>
+
+        <script>
+        let currentPax = 1;
+        let selectedPrice = 91;
+        let viewDate = new Date(2026, 2, 1);
+
+        function updatePax(change) {
+            currentPax = Math.max(1, currentPax + change);
+            document.getElementById('paxDisplay').innerText = currentPax;
+            updateSummary();
+        }
+
+        function drawCalendar() {
+            const grid = document.getElementById('calendarGrid');
+            grid.innerHTML = '';
+            document.getElementById('monthLabel').innerText = new Intl.DateTimeFormat('id-ID', {month:'long', year:'numeric'}).format(viewDate);
+            ['M','S','S','R','K','J','S'].forEach(d => grid.insertAdjacentHTML('beforeend', `<div style="text-align:center; font-size:0.6rem; font-weight:700; color:#94a3b8;">${d}</div>`));
+            const year = viewDate.getFullYear(), month = viewDate.getMonth();
+            let shift = new Date(year, month, 1).getDay();
+            for (let i = 0; i < shift; i++) grid.insertAdjacentHTML('beforeend', '<div></div>');
+            for (let i = 1; i <= new Date(year, month + 1, 0).getDate(); i++) {
+                const div = document.createElement('div');
+                div.className = 'day-cell' + (i === 19 && month === 2 ? ' selected' : '');
+                div.innerText = i;
+                div.onclick = () => {
+                    const d = new Date(year, month, i);
+                    const opt = { weekday: 'short', day: 'numeric', month: 'short', year: '2-digit' };
+                    document.getElementById('pickedDateLabel').innerText = d.toLocaleDateString('id-ID', {day:'numeric', month:'long'});
+                    document.getElementById('resDate').innerText = d.toLocaleDateString('en-US', opt);
+                    document.getElementById('calendarView').style.display = 'none';
+                    document.getElementById('selectionHeader').style.display = 'block';
+                    document.getElementById('optionsView').style.display = 'block';
+                };
+                grid.appendChild(div);
+            }
+        }
+
+        function resetCalendar() {
+            document.getElementById('calendarView').style.display = 'block';
+            document.getElementById('selectionHeader').style.display = 'none';
+            document.getElementById('optionsView').style.display = 'none';
+        }
+
+        function selectOpt(card, title, price) {
+            document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            selectedPrice = price;
+            document.getElementById('resTitle').innerText = title;
+            updateSummary();
+        }
+
+        function selectTime(btn, time) {
+            document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('resTime').innerText = time;
+        }
+
+        function updateSummary() {
+            document.getElementById('resPaxInfo').innerText = `${currentPax} x $${selectedPrice.toFixed(2)}`;
+            document.getElementById('resTotal').innerText = `$${(currentPax * selectedPrice).toFixed(2)}`;
+        }
+
+        function moveMonth(s) { viewDate.setMonth(viewDate.getMonth() + s); drawCalendar(); }
+
+        drawCalendar();
+        updateSummary();
+    </script>
+    </body>
+</html>

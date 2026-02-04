@@ -2,220 +2,153 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8">
-    <title>Nusa Penida Adventure</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>Nusa Penida Adventure - Booking</title>
     <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Roboto, sans-serif;
-    }
+        :root {
+            --primary-blue: #1e56a0;
+            --btn-blue: #1d5ed2;
+            --text-main: #4a5568;
+            --text-faded: #cbd5e0;
+            --bg-body: #f4f7f9;
+            --green-indicator: #86efac;
+            --accent-red: #e63946;
+            --dark-blue: #2c3e50;
+        }
 
-    body {
-      margin: 0;
-      background: #f5f7fa;
-      color: #333;
-    }
+        * { box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+        body { margin: 0; background-color: var(--bg-body); color: #333; }
 
-    /* ================= HERO ================= */
-    .hero {
-      height: 60vh;
-      background: 
-        linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)),
-        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') 
-        center / cover;
-      display: flex;
-      align-items: center;
-      padding: 40px;
-      color: #fff;
-    }
+        /* ================= HERO ================= */
+        .hero {
+            height: 45vh;
+            background: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)),
+                        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') center / cover;
+            display: flex; align-items: center; padding: 40px; color: #fff;
+        }
+        .hero h1 { font-size: 40px; margin-bottom: 10px; }
 
-    .hero h1 {
-      font-size: 40px;
-      margin-bottom: 10px;
-    }
+        /* ================= LAYOUT ================= */
+        .container {
+            display: grid;
+            grid-template-columns: 4fr 1.3fr; /* TETAP: Artikel 4 bagian, Booking 1.3 bagian */
+            gap: 30px;
+            padding: 40px;
+            max-width: 1450px;
+            margin: 0 auto;
+            align-items: flex-start;
+        }
 
-    .price-tag {
-      font-size: 26px;
-      background: #f4c430;
-      padding: 8px 16px;
-      border-radius: 6px;
-      color: #000;
-      display: inline-block;
-      margin-top: 10px;
-    }
+        .content {
+            background: #fff; padding: 30px; border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
 
-    /* ================= LAYOUT ================= */
-    .container {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 30px;
-      padding: 40px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+        /* Artikel Styling */
+        .history-article { margin: 40px 0; clear: both; }
+        .history-title {
+            font-size: 22px; font-weight: 700; margin-bottom: 16px;
+            border-bottom: 3px solid var(--accent-red); display: inline-block; padding-bottom: 4px;
+        }
+        .history-body img { width: 250px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .history-article.right img { float: right; margin: 0 0 15px 24px; }
+        .history-article.left img { float: left; margin: 0 24px 15px 0; }
+        .history-article p { font-size: 15px; line-height: 1.8; text-align: justify; }
 
-    .content {
-      background: #fff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    }
+        /* ================= COMPACT BOOKING SIDEBAR ================= */
+        .booking-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* Diperketat agar muat 1 layar */
+            position: sticky;
+            top: 10px;
+            max-height: calc(100vh - 20px);
+        }
 
-    /* ================= ARTICLE ================= */
-    .history-article {
-      margin: 40px 0;
-      clear: both;
-    }
+        /* Participants - Compact UI */
+        .participants-card {
+            background: white; padding: 12px 15px; border-radius: 14px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .participants-card h3 { margin: 0; font-size: 1.1rem; color: var(--dark-blue); font-weight: 700; }
+        .blue-underline { width: 30px; height: 4px; background-color: var(--btn-blue); margin: 5px 0 10px 0; border-radius: 10px; }
+        .pax-row { display: flex; justify-content: space-between; align-items: center; }
+        .pax-label b { display: block; font-size: 0.85rem; color: var(--dark-blue); }
+        .pax-label span { font-size: 0.7rem; color: #94a3b8; }
+        .pax-controls { display: flex; align-items: center; gap: 10px; }
+        .circle-btn {
+            width: 26px; height: 26px; border: 1.2px solid var(--btn-blue); border-radius: 50%;
+            background: white; color: var(--btn-blue); font-size: 1rem; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+        }
 
-    .history-title {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 16px;
-      border-bottom: 3px solid #e63946;
-      display: inline-block;
-      padding-bottom: 4px;
-    }
+        /* Kalender - Compact UI */
+        .calendar-card {
+            background: white; padding: 10px; border-radius: 14px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .current-month { font-weight: 700; font-size: 0.8rem; color: #2d3748; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+        .day-name { color: var(--text-faded); font-size: 0.6rem; font-weight: 600; text-align: center; }
+        .day-cell {
+            aspect-ratio: 1.5; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; border-radius: 4px; font-size: 0.75rem;
+        }
+        .day-cell.selected { background-color: #dcfce7 !important; color: #166534 !important; font-weight: bold; }
 
-    .history-body img {
-      width: 280px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
+        /* TICKET - SESUAI GAMBAR REFERENSI */
+        .ticket {
+            background: white;
+            display: flex;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            min-height: 120px;
+            position: relative;
+            -webkit-mask-image: radial-gradient(circle at 65% 0px, transparent 8px, black 9px),
+                                radial-gradient(circle at 65% 100%, transparent 8px, black 9px);
+        }
+        .left-side { flex: 1.6; padding: 10px 12px; display: flex; flex-direction: column; justify-content: space-between; }
+        .right-side {
+            flex: 1; padding: 10px 12px; text-align: right; border-left: 1px dashed #cbd5e1;
+            display: flex; flex-direction: column; justify-content: space-between; position: relative;
+        }
+        .tear-here {
+            position: absolute; left: -8px; top: 50%; transform: translateY(-50%) rotate(-90deg);
+            font-size: 6px; color: #cbd5e0; letter-spacing: 1px; background: white; padding: 0 3px;
+        }
+        .activity-title { color: var(--primary-blue); font-weight: 800; font-size: 0.8rem; line-height: 1.2; margin: 0; }
+        .pax-detail { font-size: 0.7rem; color: #64748b; margin-top: 5px; }
+        .time-display { font-size: 1.2rem; font-weight: 800; color: var(--primary-blue); display: block; }
+        .date-display { font-size: 0.6rem; color: var(--primary-blue); }
+        .price-total { font-size: 1.2rem; font-weight: 800; color: #1e293b; display: block; }
 
-    /* ===== DESKTOP FLOAT ===== */
-    .history-article.right img {
-      float: right;
-      margin: 0 0 15px 24px;
-    }
+        .checkout-btn {
+            width: 100%; background: var(--btn-blue); color: white; border: none;
+            padding: 12px; border-radius: 10px; font-size: 0.9rem; font-weight: 700;
+            cursor: pointer; box-shadow: 0 4px 10px rgba(29, 94, 210, 0.2);
+        }
 
-    .history-article.left img {
-      float: left;
-      margin: 0 24px 15px 0;
-    }
-
-    .history-article p {
-      font-size: 15px;
-      line-height: 1.8;
-      text-align: justify;
-      margin-bottom: 14px;
-    }
-
-    .history-article::after {
-      content: "";
-      display: block;
-      clear: both;
-    }
-
-    /* ================= BOOKING CARD ================= */
-    .booking {
-      background: #fff;
-      padding: 25px;
-      border-radius: 12px;
-      position: sticky;
-      top: 20px;
-      height: fit-content;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    }
-
-    .booking h3 { margin-top: 0; color: #e63946; font-size: 24px; }
-
-    .booking ul {
-      padding-left: 0;
-      list-style: none;
-      margin: 20px 0;
-    }
-
-    .booking ul li {
-      margin-bottom: 10px;
-      color: #555;
-      font-size: 14px;
-    }
-
-    .booking input,
-    .booking select {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-    }
-
-    .book-btn {
-      width: 100%;
-      padding: 15px;
-      background: #e63946;
-      color: #fff;
-      border: none;
-      font-size: 16px;
-      font-weight: 700;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .book-btn:hover { background: #c32f3a; }
-
-    /* ================= MOBILE (HP) ================= */
-    @media (max-width: 850px) {
-      .container {
-        display: flex;
-        flex-direction: column; /* Booking pindah ke bawah content */
-        padding: 20px;
-      }
-
-      /* Agar Booking Card muncul setelah Hero, sebelum artikel (Opsional) */
-      .booking {
-        order: -1; /* Pindah ke paling atas di dalam container flex */
-        position: static;
-        margin-bottom: 30px;
-      }
-
-      .hero { height: 40vh; padding: 20px; }
-      .hero h1 { font-size: 26px; }
-
-      /* MATIKAN FLOAT & GAMBAR DI ATAS */
-      .history-article.right img,
-      .history-article.left img {
-        float: none;      /* Matikan melayang */
-        display: block;
-        width: 100%;      /*Gambar full lebar HP */
-        margin: 0 0 20px 0; /* Jarak bawah ke teks */
-        height: auto;
-      }
-
-      .history-article p {
-        font-size: 14px; /* Lebih nyaman dibaca di HP */
-        text-align: left;
-      }
-
-      .history-title {
-        display: block;
-        text-align: center;
-      }
-    }
-  </style>
+        @media (max-width: 850px) {
+            .container { display: flex; flex-direction: column; padding: 20px; }
+            .booking-sidebar { order: 2; position: static; max-height: none; }
+        }
+    </style>
   </head>
-
   <body>
 
     <section class="hero">
       <div>
         <h1>Nusa Penida Adventure</h1>
-        <span>⭐⭐⭐⭐⭐ 4.8 (210 Reviews) • <b>1.245x dipesan</b></span><br>
-        <div class="price-tag">$149 / person</div>
+        <span>⭐⭐⭐⭐⭐ 4.8 (210 Reviews)</span>
       </div>
     </section>
 
     <div class="container">
-
       <div class="content">
         <h2>Tour Overview</h2>
-        <p>
-          Nikmati keindahan alam <b>Nusa Penida</b> dalam satu hari penuh
-          bersama guide lokal berpengalaman. Jelajahi pantai ikonik dan tebing
-          yang menakjubkan.
-        </p>
+        <p>Nikmati keindahan alam <b>Nusa Penida</b> dalam satu hari penuh
+          bersama guide lokal berpengalaman.</p>
 
         <section class="history-article right">
           <h3 class="history-title">History of the Place</h3>
@@ -223,20 +156,11 @@
             <img
               src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff"
               alt="View 1">
-            <p>
-              Nusa Penida memiliki sejarah panjang yang sangat unik dalam
-              konstelasi budaya Bali. Dahulu, pulau ini dikenal sebagai tempat
-              pembuangan bagi mereka yang dianggap memiliki ilmu spiritual
-              tinggi namun berbahaya. Namun seiring berjalannya waktu, aura
-              mistis tersebut bertransformasi menjadi daya tarik wisata yang
-              memukau dunia.
-            </p>
-            <p>
-              Keindahan tebing-tebing curam dan pantai pasir putihnya mulai
-              terekspos luas di era digital, menjadikannya salah satu destinasi
-              wajib bagi para petualang yang mencari ketenangan sekaligus
-              tantangan adrenalin.
-            </p>
+            <p>Nusa Penida memiliki sejarah panjang yang unik. Dahulu dikenal
+              sebagai pulau pembuangan, kini bertransformasi menjadi surga
+              wisata dunia. Tebing-tebing ikonik seperti Kelingking Beach
+              menjadi saksi bisu keindahan alam yang tak tertandingi oleh tempat
+              manapun di dunia.</p>
           </div>
         </section>
 
@@ -246,57 +170,117 @@
             <img
               src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
               alt="View 2">
-            <p>
-              Warisan budaya di Nusa Penida tetap terjaga sangat murni.
-              Masyarakat setempat masih memegang teguh tradisi leluhur dalam
-              menjaga keharmonisan alam. Setiap pantai dan tebing seringkali
-              memiliki pura atau tempat suci yang dihormati, menunjukkan betapa
-              sakralnya bentang alam di pulau ini.
-            </p>
-            <p>
-              Perpaduan antara ritual keagamaan yang autentik dan lanskap alam
-              yang dramatis menciptakan pengalaman yang tidak akan ditemukan di
-              tempat lain. Berkunjung ke sini bukan sekadar berfoto, tapi
-              merasakan denyut nadi kehidupan Bali yang sesungguhnya.
-            </p>
+            <p>Budaya masyarakat setempat sangat kental dengan kearifan lokal
+              dalam menjaga alam. Setiap sudut pulau ini dianggap sakral,
+              menciptakan harmoni yang bisa Anda rasakan langsung saat
+              menginjakkan kaki di pulau ini.</p>
           </div>
         </section>
       </div>
 
-      <aside class="booking">
-        <h3>$149 / person</h3>
-        <ul>
-          <li>✅ Full Day Private Tour</li>
-          <li>✅ Hotel Pickup & Drop-off</li>
-          <li>✅ Fast Boat Ticket (PP)</li>
-          <li>✅ Lunch & Mineral Water</li>
-          <li>✅ Free Cancellation (24h)</li>
-        </ul>
+      <aside class="booking-sidebar">
+        <div class="participants-card">
+          <h3>Participants</h3>
+          <div class="blue-underline"></div>
+          <div class="pax-row">
+            <div class="pax-label">
+              <b>Adult (10 - 80)</b>
+              <span>Age 10 - 80</span>
+            </div>
+            <div class="pax-controls">
+              <button class="circle-btn" onclick="updatePax(-1)">−</button>
+              <span id="paxDisplay" style="font-weight:700;">2</span>
+              <button class="circle-btn" onclick="updatePax(1)">+</button>
+            </div>
+          </div>
+        </div>
 
-        <label style="font-size: 12px; color: #666;">Pilih Tanggal:</label>
-        <input type="date" value="2026-02-12">
+        <div class="calendar-card">
+          <div class="calendar-header">
+            <button class="nav-btn" onclick="changeMonth(-1)">&#10094;</button>
+            <div class="current-month" id="monthDisplay">February 2026</div>
+            <button class="nav-btn" onclick="changeMonth(1)">&#10095;</button>
+          </div>
+          <div class="calendar-grid" id="calendarGrid"></div>
+        </div>
 
-        <label style="font-size: 12px; color: #666;">Jumlah Orang:</label>
-        <select>
-          <option>1 Adult</option>
-          <option selected>2 Adults</option>
-          <option>3 Adults</option>
-          <option>4+ Adults</option>
-        </select>
+        <div class="ticket">
+          <div class="left-side">
+            <p class="activity-title">Bali Quad Bike and White Water Rafting
+              Inclusive Private Transfer</p>
+            <div class="pax-detail">Adult (10-70): <b id="ticketPaxDetail">2 x
+                $149.00</b></div>
+          </div>
+          <div class="right-side">
+            <span class="tear-here">TEAR HERE</span>
+            <div>
+              <span class="time-display">08:00</span>
+              <span class="date-display" id="selectedDateLabel">Thu, 12 Feb
+                2026</span>
+            </div>
+            <span class="price-total" id="totalPriceText">$298.00</span>
+          </div>
+        </div>
 
-        <button class="book-btn">Book Now 🔒</button>
-        <p
-          style="font-size: 11px; color: #999; text-align: center; margin-top: 10px;">
-          No hidden fees • Instant Confirmation
-        </p>
+        <button class="checkout-btn" onclick="alert('Proceeding...')">Checkout
+          🔒</button>
       </aside>
-
     </div>
 
-    <footer
-      style="text-align: center; padding: 40px; color: #999; font-size: 14px;">
-      &copy; 2026 Nusa Penida Adventure. All Rights Reserved.
-    </footer>
+    <script>
+        let currentPax = 2;
+        const pricePerPerson = 149;
+        let currentViewDate = new Date(2026, 1, 1);
+        const monthLabels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+        function updatePax(change) {
+            currentPax = Math.max(1, currentPax + change);
+            document.getElementById('paxDisplay').innerText = currentPax;
+            document.getElementById('ticketPaxDetail').innerText = `${currentPax} x $${pricePerPerson.toFixed(2)}`;
+            document.getElementById('totalPriceText').innerText = `$${(currentPax * pricePerPerson).toFixed(2)}`;
+        }
+
+        function renderCalendar() {
+            const grid = document.getElementById('calendarGrid');
+            const monthDisplay = document.getElementById('monthDisplay');
+            grid.innerHTML = '';
+            const year = currentViewDate.getFullYear();
+            const month = currentViewDate.getMonth();
+            monthDisplay.innerText = `${monthLabels[month]} ${year}`;
+
+            ['M', 'T', 'W', 'T', 'F', 'S', 'S'].forEach(d => {
+                const div = document.createElement('div'); div.className = 'day-name'; div.innerText = d; grid.appendChild(div);
+            });
+
+            const firstDay = new Date(year, month, 1).getDay();
+            let startShift = firstDay === 0 ? 6 : firstDay - 1;
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            for (let i = 0; i < startShift; i++) {
+                const div = document.createElement('div'); div.className = 'day-cell'; grid.appendChild(div);
+            }
+
+            for (let i = 1; i <= daysInMonth; i++) {
+                const div = document.createElement('div');
+                div.className = 'day-cell';
+                div.innerText = i;
+                if(i === 12 && month === 1) div.classList.add('selected');
+                div.onclick = function() {
+                    document.querySelectorAll('.day-cell').forEach(el => el.classList.remove('selected'));
+                    this.classList.add('selected');
+                    const dayName = new Date(year, month, i).toLocaleDateString('en-US', {weekday: 'short'});
+                    document.getElementById('selectedDateLabel').innerText = `${dayName}, ${i} ${monthLabels[month].substring(0,3)} ${year}`;
+                };
+                grid.appendChild(div);
+            }
+        }
+
+        function changeMonth(step) {
+            currentViewDate.setMonth(currentViewDate.getMonth() + step);
+            renderCalendar();
+        }
+
+        renderCalendar();
+    </script>
   </body>
 </html>
