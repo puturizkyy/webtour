@@ -235,6 +235,123 @@
             </div>
         </section>
 
+        <!-- ================= review-section ================= -->
+        <section class="review-section">
+            <h2>Loved by thousands of iPhone<br>and Android users alike</h2>
+
+            <div class="review-wrapper">
+                <button class="nav prev" onclick="slideReview(-1)">‹</button>
+
+                <div class="review-slider" id="reviewSlider">
+                    <div class="review-card">
+                        <div class="stars">★★★★★</div>
+                        <p>Does exactly what it says. Clear to read and
+                            understand.</p>
+                        <strong>@colinmandy94</strong>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="stars">★★★★★</div>
+                        <p>Love the ease and efficiency. Awesome app.</p>
+                        <strong>Jennifer Black</strong>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="stars">★★★★★</div>
+                        <p>This app is good if you need to identify spyware
+                            quickly.</p>
+                        <strong>Philip Colligan</strong>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="stars">★★★★★</div>
+                        <p>Very helpful and easy to recommend to others.</p>
+                        <strong>Leslie</strong>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="stars">★★★★★</div>
+                        <p>Simple, fast and very useful.</p>
+                        <strong>Michael</strong>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="stars">★★★★★</div>
+                        <p>Works perfectly on my phone.</p>
+                        <strong>Anna</strong>
+                    </div>
+                </div>
+
+                <button class="nav next" onclick="slideReview(1)">›</button>
+            </div>
+
+            <div class="dots" id="reviewDots"></div>
+        </section>
+
+        <!-- ================= footer ================= -->
+        <footer class="site-footer">
+            <div class="footer-container">
+
+                <div class="footer-column">
+                    <h3>ABOUT US</h3>
+                    <div class="about-content">
+                        <strong>🏔️ Rukmana Bali Tour</strong>
+                        <p class="about-text">
+                            Rukmana Bali Tour is your gateway to discovering new
+                            horizons.
+                            We offer curated travel experiences. Join us and
+                            embark on your next adventure!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>QUICK LINKS</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Destinations</a></li>
+                        <li><a href="#">Tours</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>FOLLOW US</h3>
+                    <div class="social-group">
+                        <a href="#" class="social-circle">f</a>
+                        <a href="#" class="social-circle">t</a>
+                        <a href="#" class="social-circle">o</a>
+                        <a href="#" class="social-circle">i</a>
+                        <a href="#" class="social-circle">y</a>
+                    </div>
+                    <p style="font-size: 14px; color: #b0b3b8;">Stay
+                        connected!</p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>CONTACT US</h3>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <p>Jl. Mangut No.19, Carangsari, Kec. Petang, Kabupaten
+                            Badung, Bali 80353</p>
+                    </div>
+                    <div class="contact-item">
+                        <span>✉️</span>
+                        <p>info@rukmanabalitour.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <span>📞</span>
+                        <p>0878-6220-7901</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Rukmana Bali Tour. All rights reserved.</p>
+            </div>
+        </footer>
         <!-- ================= BOTTOM BAR ================= -->
         <nav class="bottom-bar">
             <a href="#home" class="bar-item active">
@@ -297,6 +414,53 @@ function closePopup() {
 document.getElementById("popup").addEventListener("click", function (e) {
   if (e.target === this) closePopup();
 });
+
+// review
+const slider = document.getElementById("reviewSlider");
+const dotsContainer = document.getElementById("reviewDots");
+const cards = document.querySelectorAll(".review-card");
+
+// Menentukan jumlah kartu yang tampil (HP: 2 kartu, Desktop: 4 kartu)
+let slidesPerPage = window.innerWidth <= 768 ? 2 : 4;
+let currentSlide = 0;
+
+// Fungsi menghitung lebar 1 kartu + gap
+function getCardWidth() {
+  return cards[0].offsetWidth + 20;
+}
+
+// Fungsi menghitung total halaman yang tersedia
+function totalSlides() {
+  return Math.ceil(cards.length / slidesPerPage);
+}
+
+// Membuat titik-titik (dots) navigasi di bawah secara otomatis
+function createDots() {
+  dotsContainer.innerHTML = "";
+  for (let i = 0; i < totalSlides(); i++) {
+    const dot = document.createElement("span");
+    if (i === 0) dot.classList.add("active");
+    dot.onclick = () => goToSlide(i);
+    dotsContainer.appendChild(dot);
+  }
+}
+
+// Berpindah ke slide tertentu
+function goToSlide(index) {
+  const scrollAmount = getCardWidth() * slidesPerPage * index;
+  slider.scrollTo({ left: scrollAmount, behavior: "smooth" });
+  currentSlide = index;
+  updateDots();
+}
+
+// Fungsi untuk tombol panah Kiri/Kanan
+function slideReview(direction) {
+  currentSlide += direction;
+  // Validasi agar slide tidak bablas keluar batas
+  if (currentSlide < 0) currentSlide = 0;
+  if (currentSlide >= totalSlides()) currentSlide = totalSlides() - 1;
+  goToSlide(currentSlide);
+}
 </script>
     </body>
 </html>
