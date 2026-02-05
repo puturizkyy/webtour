@@ -381,86 +381,70 @@
         </section>
 
         <script>
+        /* Fungsi untuk membuka popup informasi */
+        function openPopup(type) {
+            const popup = document.getElementById("popup");
+            const title = document.getElementById("popup-title");
+            const text = document.getElementById("popup-text");
 
-function openPopup(type) {
-  const popup = document.getElementById("popup");
-  const title = document.getElementById("popup-title");
-  const text = document.getElementById("popup-text");
+            const data = {
+                adrenaline: {
+                    title: "Adrenaline Experience",
+                    text: "Isi teks panjang tentang adrenalin..."
+                }
+            };
 
-  // Database lokal untuk konten popup
-  const data = {
-    adrenaline: {
-      title: "Adrenaline Experience",
-      text: "Isi teks panjang tentang adrenalin..."
-    }
-  };
+            title.innerText = data[type].title;
+            text.innerText = data[type].text;
 
-  // Memasukkan teks ke dalam HTML popup
-  title.innerText = data[type].title;
-  text.innerText = data[type].text;
+            popup.classList.add("show");
+            document.body.classList.add("no-scroll"); // Cegah scroll saat popup buka
+        }
 
-  // Menampilkan popup dan mengunci scroll latar belakang
-  popup.classList.add("show");
-  document.body.classList.add("no-scroll"); 
-}
+        /* Fungsi untuk menutup popup */
+        function closePopup() {
+            document.getElementById("popup").classList.remove("show");
+            document.body.classList.remove("no-scroll");
+        }
 
-function closePopup() {
-  // Menyembunyikan popup dan membuka kembali scroll
-  document.getElementById("popup").classList.remove("show");
-  document.body.classList.remove("no-scroll"); 
-}
+        /* Menutup popup jika klik di area gelap (luar konten) */
+        document.getElementById("popup").addEventListener("click", function (e) {
+            if (e.target === this) closePopup();
+        });
 
-// Menutup popup secara otomatis jika area luar (gelap) diklik
-document.getElementById("popup").addEventListener("click", function (e) {
-  if (e.target === this) closePopup();
-});
+        /* Logika Slider Review */
+        const slider = document.getElementById("reviewSlider");
+        const dotsContainer = document.getElementById("reviewDots");
+        const cards = document.querySelectorAll(".review-card");
 
-// review
-const slider = document.getElementById("reviewSlider");
-const dotsContainer = document.getElementById("reviewDots");
-const cards = document.querySelectorAll(".review-card");
+        let slidesPerPage = window.innerWidth <= 768 ? 2 : 4;
+        let currentSlide = 0;
 
-// Menentukan jumlah kartu yang tampil (HP: 2 kartu, Desktop: 4 kartu)
-let slidesPerPage = window.innerWidth <= 768 ? 2 : 4;
-let currentSlide = 0;
+        function getCardWidth() {
+            return cards[0].offsetWidth + 20; // Lebar kartu + gap
+        }
 
-// Fungsi menghitung lebar 1 kartu + gap
-function getCardWidth() {
-  return cards[0].offsetWidth + 20;
-}
+        function totalSlides() {
+            return Math.ceil(cards.length / slidesPerPage);
+        }
 
-// Fungsi menghitung total halaman yang tersedia
-function totalSlides() {
-  return Math.ceil(cards.length / slidesPerPage);
-}
+        /* Berpindah slide secara halus */
+        function goToSlide(index) {
+            const scrollAmount = getCardWidth() * slidesPerPage * index;
+            slider.scrollTo({
+                left: scrollAmount,
+                behavior: "smooth"
+            });
+            currentSlide = index;
+            // updateDots() jika ada fungsi tsb
+        }
 
-// Membuat titik-titik (dots) navigasi di bawah secara otomatis
-function createDots() {
-  dotsContainer.innerHTML = "";
-  for (let i = 0; i < totalSlides(); i++) {
-    const dot = document.createElement("span");
-    if (i === 0) dot.classList.add("active");
-    dot.onclick = () => goToSlide(i);
-    dotsContainer.appendChild(dot);
-  }
-}
-
-// Berpindah ke slide tertentu
-function goToSlide(index) {
-  const scrollAmount = getCardWidth() * slidesPerPage * index;
-  slider.scrollTo({ left: scrollAmount, behavior: "smooth" });
-  currentSlide = index;
-  updateDots();
-}
-
-// Fungsi untuk tombol panah Kiri/Kanan
-function slideReview(direction) {
-  currentSlide += direction;
-  // Validasi agar slide tidak bablas keluar batas
-  if (currentSlide < 0) currentSlide = 0;
-  if (currentSlide >= totalSlides()) currentSlide = totalSlides() - 1;
-  goToSlide(currentSlide);
-}
-</script>
+        function slideReview(direction) {
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = 0;
+            if (currentSlide >= totalSlides()) currentSlide = totalSlides() - 1;
+            goToSlide(currentSlide);
+        }
+    </script>
     </body>
 </html>
