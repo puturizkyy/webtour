@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <!-- ================= NAVBAR ================= -->
+        <header class="navbar">
+            <div class="logo">🌼 Explore Bali</div>
+            <nav>
+                <a href="#">Home</a>
+                <a href="tour.html">Tours</a>
+                <a href="#">FAQ</a>
+                <a href="#">Contact</a>
+                <span id="sidebarToggle" class="toggle-btn"
+                    onclick="toggleSidebar()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </nav>
+        </header>
+
+        <!-- ================= HERO ================= -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Discover the Best of Bali</h1>
+                <p>Find your perfect getaway in paradise.</p>
+            </div>
+        </section>
+
+        <!-- ================= INFO SECTION ================= -->
+
+        <section class="info-section">
+            <div class="info-container">
+                <div class="info-image">
+                    <img src="tamplate.jpg" alt="Mobile Security">
+                </div>
+                <div class="info-text">
+                    <h2>At Certo, mobile security<br>is not an afterthought,
+                        it’s<br>what we do.</h2>
+                    <p>With years of experience in mobile security and spyware
+                        detection,
+                        our products have helped countless people safeguard
+                        their devices
+                        and find peace of mind.</p>
+                    <div class="info-buttons">
+                        <a href="#" class="btn primary">Get Certo for iPhone
+                            →</a>
+                        <a href="#" class="btn outline">Get Certo for
+                            Android</a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ================= TOURS ================= -->
+        <section class="tours">
+            <h2>Popular Bali Tours</h2>
+            <div class="tour-grid">
+                <div class="tour-card">
+                    <img src="tamplate.jpg" alt>
+                    <h3>Ubud & Rice Terraces</h3>
+                    <p>Full Day Tour</p>
+                    <span class="price">$99</span>
+                </div>
+                <div class="tour-card">
+                    <img src="tamplate.jpg" alt>
+                    <h3>Ayung River Rafting</h3>
+                    <p>100 orders</p>
+                    <span class="price">$149</span>
+                </div>
+                <div class="tour-card">
+                    <img src="tamplate.jpg" alt>
+                    <h3>Temple & Cultural Tour</h3>
+                    <p>Total orders so far <br> 100 person</p>
+                    <span class="price">$189</span>
+                </div>
+                <div class="tour-card">
+                    <img src="tamplate.jpg" alt>
+                    <h3>Waterfalls & Jungle Trekking</h3>
+                    <p>Full Day Tour</p>
+                    <span class="price">$129</span>
+                </div>
+            </div>
+            <button class="btn-view">View All Tours</button>
+        </section>
+
+        <!-- ================= why-choose ================= -->
+        <section class="why-choose">
+            <div class="container">
+                <h2 class="title">
+                    <span class="arrow">>>>></span>
+                    WHY CHOOSE US?
+                    <span class="arrow"><<<<</span>
+                </h2>
+
+                <p class="subtitle">
+                    Discover the ultimate ATV adventure in Bali with our longest
+                    tracks,
+                    top-notch safety, and unforgettable thrills. Here’s what
+                    sets us apart!
+                </p>
+
+                <div class="card-wrapper">
+                    <div class="card">
+                        <div class="icon">❤️</div>
+                        <h3>ADRENALINE</h3>
+                        <p>
+                            Feel the rush as you navigate Bali’s rugged terrains
+                            on a powerful ATV.
+                        </p>
+                        <button class="more-btn"
+                            onclick="openPopup('adrenaline')">
+                            Lihat Selengkapnya
+                        </button>
+
+                    </div>
+
+                    <div class="card">
+                        <div class="icon">🏁</div>
+                        <h3>CHALLENGES</h3>
+                        <p>
+                            Conquer diverse trails with caves, waterfalls, rice
+                            fields, and river tracks.
+                        </p>
+                        <button class="more-btn"
+                            onclick="openPopup('adrenaline')">
+                            Lihat Selengkapnya
+                        </button>
+                    </div>
+
+                    <div class="card">
+                        <div class="icon">🛡️</div>
+                        <h3>SAFETY</h3>
+                        <p>
+                            Ride confidently with professional guides, safety
+                            gear, and insurance coverage.
+                        </p>
+                        <button class="more-btn"
+                            onclick="openPopup('adrenaline')">
+                            Lihat Selengkapnya
+                        </button>
+                    </div>
+
+                    <div class="card">
+                        <div class="icon">🛣️</div>
+                        <h3>TRACKS</h3>
+                        <p>
+                            Explore Bali's longest and most scenic ATV routes,
+                            tailored for all skill levels.
+                        </p>
+                        <button class="more-btn"
+                            onclick="openPopup('adrenaline')">
+                            Lihat Selengkapnya
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="popup" id="popup">
+            <div class="popup-content">
+
+                <div class="popup-header">
+                    <h3 id="popup-title"></h3>
+                    <span class="close" onclick="closePopup()">×</span>
+                </div>
+
+                <div class="popup-body">
+                    <p id="popup-text"></p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ================= gallery ================= -->
+        <section class="home-gallery">
+            <div class="gallery-container">
+
+                <h2 class="gallery-title">Our Bali Gallery</h2>
+                <p class="gallery-subtitle">
+                    Explore unforgettable moments from our Bali adventures
+                </p>
+
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="tamplate.jpg" alt="Ubud Rice Field">
+                        <span class="gallery-text">Ubud Rice Field</span>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="tamplate.jpg" alt="ATV Adventure">
+                        <span class="gallery-text">ATV Adventure</span>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="tamplate.jpg" alt="Waterfall Trek">
+                        <span class="gallery-text">Waterfall Trek</span>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="tamplate.jpg" alt="Sunrise Mount Batur">
+                        <span class="gallery-text">Sunrise Mount Batur</span>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="tamplate.jpg" alt="River Rafting">
+                        <span class="gallery-text">River Rafting</span>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="tamplate.jpg" alt="Beach Tour">
+                        <div class="tour-info">
+                            <h3>Blue Lagun Snorkeling</h3>
+
+                            <div class="tour-rating">
+                                ★★★★★ <span>(117 REVIEWS)</span>
+                            </div>
+
+                            <div class="tour-price">
+                                From IDR 580.000
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <a href="#" class="gallery-btn">Lihat Lebih Banyak</a>
+
+            </div>
+        </section>
+
+        <!-- ================= BOTTOM BAR ================= -->
+        <nav class="bottom-bar">
+            <a href="#home" class="bar-item active">
+                <span style="opacity: 0;">🖼️🖼️</span>
+                <small></small>
+            </a>
+            <a href="#gallery" class="bar-item">
+                <span>🖼️</span>
+                <small>Galeri</small>
+            </a>
+            <a href="#booking" class="bar-item">
+                <span>📅</span>
+                <small>Booking</small>
+            </a>
+            <a href="#chat" class="bar-item">
+                <span>💬</span>
+                <small>Chat</small>
+            </a>
+            <a href="#profile" class="bar-item">
+                <span>👤</span>
+                <small>Profil</small>
+            </a>
+        </nav>
+        <!-- ================= wa button ================= -->
+        <section class="wa">
+            <button><img src="tamplate.jpg" alt="WhatsApp"></button>
+        </section>
+
+        <script>
+
+function openPopup(type) {
+  const popup = document.getElementById("popup");
+  const title = document.getElementById("popup-title");
+  const text = document.getElementById("popup-text");
+
+  // Database lokal untuk konten popup
+  const data = {
+    adrenaline: {
+      title: "Adrenaline Experience",
+      text: "Isi teks panjang tentang adrenalin..."
+    }
+  };
+
+  // Memasukkan teks ke dalam HTML popup
+  title.innerText = data[type].title;
+  text.innerText = data[type].text;
+
+  // Menampilkan popup dan mengunci scroll latar belakang
+  popup.classList.add("show");
+  document.body.classList.add("no-scroll"); 
+}
+
+function closePopup() {
+  // Menyembunyikan popup dan membuka kembali scroll
+  document.getElementById("popup").classList.remove("show");
+  document.body.classList.remove("no-scroll"); 
+}
+
+// Menutup popup secara otomatis jika area luar (gelap) diklik
+document.getElementById("popup").addEventListener("click", function (e) {
+  if (e.target === this) closePopup();
+});
+</script>
+    </body>
+</html>
